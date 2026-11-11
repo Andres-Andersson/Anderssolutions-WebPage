@@ -8,7 +8,8 @@
 <meta name="theme-color" content="#0e0d0c">
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="canonical" href="https://anderssolutions.com.ar/">
-<link rel="preload" as="image" href="img/cristalero-vinoteca-calido-1600.webp" type="image/webp">
+<link rel="preload" as="image" href="img/cristalero-vinoteca-calido-1600.webp" type="image/webp" media="(min-width: 761px)">
+<link rel="preload" as="image" href="img/cristalero-vinoteca-calido-800.webp" type="image/webp" media="(max-width: 760px)">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="AndersSolutions — Diseñado a medida. Iluminado al detalle.">
@@ -16,234 +17,431 @@
 <meta property="og:image" content="https://anderssolutions.com.ar/img/og.jpg">
 <meta property="og:url" content="https://anderssolutions.com.ar/">
 <meta property="og:locale" content="es_AR">
+<script>(function(d){d.classList.add('js');setTimeout(function(){if(!window.AS){d.classList.remove('js')}},4000)})(document.documentElement)</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
-<style>
-html{scroll-behavior:smooth}section{scroll-margin-top:84px}body{margin:0;background:#0e0d0c;color:#f3efe8;font-family:'Jost','Helvetica Neue',Arial,sans-serif;font-weight:300}
-a{color:#f3efe8;text-decoration:none}a:hover{color:#c29a5b}
-.wrap{max-width:1240px;margin:0 auto;padding:0 32px;box-sizing:border-box}
-.label{font-size:12px;line-height:16px;letter-spacing:.28em;text-transform:uppercase;color:#c29a5b;font-weight:400}
-.serif{font-family:'Cormorant Garamond','Times New Roman',serif}
-.btn{display:inline-block;font-family:inherit;font-size:12px;letter-spacing:.24em;text-transform:uppercase;padding:16px 26px;border-radius:2px;border:1px solid #a39b8f;color:#f3efe8;background:transparent}
-.btn:hover{border-color:#f3efe8;color:#f3efe8}
-.btn-pri{background:#c29a5b;border-color:#c29a5b;color:#0e0d0c}
-.btn-pri:hover{background:#d4ae72;border-color:#d4ae72;color:#0e0d0c}
-.btn:focus-visible,a:focus-visible{outline:2px solid #c29a5b;outline-offset:3px}
-.nav{display:flex;gap:36px}.nav a{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#d8d2c8}
-.wm{display:block;background:url(img/anderssolutions-firma-blanca.svg) left center/contain no-repeat}
-.hero{background:linear-gradient(90deg,rgba(14,13,12,.92) 0%,rgba(14,13,12,.72) 38%,rgba(14,13,12,.15) 70%),url(img/cristalero-vinoteca-calido.jpg) center/cover no-repeat;background-image:linear-gradient(90deg,rgba(14,13,12,.92) 0%,rgba(14,13,12,.72) 38%,rgba(14,13,12,.15) 70%),image-set(url(img/cristalero-vinoteca-calido-1600.webp) type("image/webp"),url(img/cristalero-vinoteca-calido.jpg) type("image/jpeg"))}
-.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:#3a352f;border-top:1px solid #3a352f;border-bottom:1px solid #3a352f}
-.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:#3a352f;border:1px solid #3a352f}
-.gal{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:220px;gap:12px}
-.gal figure{margin:0;position:relative;overflow:hidden;background:#1a1816}
-.gal img{width:100%;height:100%;object-fit:cover;display:block}
-.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 20px 16px;background:linear-gradient(0deg,rgba(14,13,12,.85),rgba(14,13,12,0));font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#f3efe8}
-.a{grid-column:span 7;grid-row:span 2}.b{grid-column:span 5;grid-row:span 2}.c{grid-column:span 4;grid-row:span 2}.d{grid-column:span 4;grid-row:span 2}.e{grid-column:span 4;grid-row:span 2}
-.feat li,.line li{padding:10px 0;border-top:1px solid #3a352f}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px}
-.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:64px;align-items:center}
-.wa-float{display:none;position:fixed;right:18px;bottom:18px;z-index:20;width:58px;height:58px;border-radius:50%;background:#c29a5b;color:#0e0d0c;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.45)}.wa-float:hover{color:#0e0d0c;background:#d4ae72}.wa-float svg{width:28px;height:28px}
-@media (max-width:760px){
- .gal{grid-template-columns:1fr;grid-auto-rows:260px}
- .a,.b,.c,.d,.e{grid-column:span 1;grid-row:span 1}
- .nav{display:none}
- .hero{background:linear-gradient(180deg,rgba(14,13,12,.55),rgba(14,13,12,.88)),url(img/cristalero-vinoteca-calido-800.webp) center/cover no-repeat}
- .wa-float{display:flex}
- .h1{font-size:46px !important;line-height:50px !important}
- .h2{font-size:36px !important;line-height:42px !important}
- .wrap{padding:0 20px}
-}
-</style>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/galeria.css">
+<link rel="stylesheet" href="css/interactivos.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HomeAndConstructionBusiness", "name": "AndersSolutions", "description": "Muebles de cocina, vestidores, placares y cristaleros a medida, de alta gama, con tecnología CNC y luz integrada.", "url": "https://anderssolutions.com.ar/", "logo": "https://anderssolutions.com.ar/img/favicon.png", "image": "https://anderssolutions.com.ar/img/og.jpg", "telephone": "+5491121872121", "address": {"@type": "PostalAddress", "addressLocality": "Villa Madero", "addressRegion": "Buenos Aires", "addressCountry": "AR"}, "areaServed": ["Ciudad Autónoma de Buenos Aires", "Canning", "Ezeiza", "Villa Madero"], "sameAs": ["https://instagram.com/anderssolutions"]}</script>
 </head>
 <body>
-<div style="background: #0e0d0c; color: #f3efe8; width: 100%;">
+<div class="page">
 
-<header style="position: sticky; top: 0; z-index: 10; background: rgba(14,13,12,.9); border-bottom: 1px solid #3a352f;">
-<div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 84px;">
-<a href="#inicio" aria-label="AndersSolutions — inicio"><span class="wm" style="width: 168px; height: 80px;"></span></a>
+<header class="site-header">
+<div class="wrap header-bar">
+<a class="brand" href="#inicio" aria-label="AndersSolutions — inicio"><span class="wm wm--header"></span></a>
 <nav class="nav" aria-label="Principal">
 <a href="#proyectos">Proyectos</a>
 <a href="#lineas">Líneas</a>
 <a href="#proceso">Cómo trabajamos</a>
 <a href="#nosotros">Nosotros</a>
 </nav>
-<a class="btn btn-pri" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener" style="padding: 12px 20px;">WhatsApp</a>
+<div class="header-actions">
+<a class="btn btn-pri btn-header" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener">WhatsApp</a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú"><span class="nav-toggle-bar" aria-hidden="true"></span><span class="nav-toggle-bar" aria-hidden="true"></span></button>
+</div>
 </div>
 </header>
 
-<section id="inicio" class="hero" style="min-height: 760px; display: flex; align-items: center;">
-<div class="wrap" style="width: 100%;">
-<div style="max-width: 620px; padding: 96px 0;">
-<p class="label" style="margin: 0 0 28px;">Cocinas · Vestidores · Placares · Cristaleros</p>
-<h1 class="serif h1" style="margin: 0; font-size: 76px; line-height: 80px; font-weight: 300; letter-spacing: .005em;">Diseñado a medida.<br>Iluminado al detalle.</h1>
-<p style="margin: 28px 0 44px; font-size: 18px; line-height: 30px; color: #d8d2c8; max-width: 520px;">Muebles de alta gama con tecnología CNC y luz integrada. Lo ves en 3D antes de que exista.</p>
-<div style="display: flex; gap: 16px; flex-wrap: wrap;">
+<nav class="mobile-menu" id="menu-movil" aria-label="Menú">
+<div class="mobile-menu-links">
+<a href="#proyectos" style="--i:0">Proyectos</a>
+<a href="#lineas" style="--i:1">Líneas</a>
+<a href="#proceso" style="--i:2">Cómo trabajamos</a>
+<a href="#nosotros" style="--i:3">Nosotros</a>
+</div>
+<a class="btn btn-pri mobile-menu-cta" style="--i:4" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+</nav>
+
+<main id="contenido">
+
+<section id="inicio" class="hero">
+<div class="hero-media" aria-hidden="true">
+<div class="hero-bg"></div>
+<!--
+  VIDEO DE PORTADA (opcional, hoy desactivado)
+  Para activarlo:
+   1. Subir los archivos a la carpeta video/ con estos nombres exactos:
+        video/portada.webm  (VP9, primero: más liviano)
+        video/portada.mp4   (H.264, respaldo para Safari/iPhone)
+      Recomendado: 8 a 15 segundos en loop, sin audio, 1280x720 o 1920x1080,
+      menos de 3 MB cada uno, plano lento y oscuro a la izquierda (ahí va el texto).
+   2. Borrar las dos líneas de apertura y cierre de este comentario, dejando solo la etiqueta video.
+  El video se carga desde js/site.js (atributo data-src): NO se descarga si el visitante
+  tiene activado "reducir movimiento" (prefers-reduced-motion) o "ahorro de datos" (Save-Data).
+  Mientras carga se ve la foto de fondo; el video aparece con un fundido cuando empieza a reproducirse.
+  Se mantiene detrás del degradado oscuro, así el texto sigue legible.
+
+<video class="hero-video" data-hero-video muted loop playsinline autoplay preload="metadata" poster="img/cristalero-vinoteca-calido-1600.webp">
+<source data-src="video/portada.webm" type="video/webm">
+<source data-src="video/portada.mp4" type="video/mp4">
+</video>
+-->
+<div class="hero-shade"></div>
+</div>
+<div class="wrap hero-wrap">
+<div class="hero-content">
+<p class="label hero-label">Cocinas · Vestidores · Placares · Cristaleros</p>
+<h1 class="serif h1 hero-title"><span class="hero-line">Diseñado a medida.</span><br><span class="hero-line">Iluminado al detalle.</span></h1>
+<p class="hero-text">Muebles de alta gama con tecnología CNC y luz integrada. Lo ves en 3D antes de que exista.</p>
+<div class="btn-row hero-actions">
 <a class="btn btn-pri" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
 <a class="btn" href="#proyectos">Ver proyectos</a>
 </div>
 </div>
 </div>
+<span class="hero-scroll" aria-hidden="true"><span class="hero-scroll-dot"></span></span>
 </section>
 
-<section aria-label="Lo que nos distingue" style="padding: 0;">
-<div class="g4">
-<div style="background: #0e0d0c; padding: 48px 36px;">
-<p class="serif" style="margin: 0 0 18px; font-size: 40px; line-height: 40px; color: #c29a5b; font-weight: 300;">01</p>
-<h2 class="serif" style="margin: 0 0 10px; font-size: 26px; line-height: 32px; font-weight: 400;">La luz como esencia</h2>
-<p style="margin: 0; font-size: 15px; line-height: 25px; color: #a39b8f;">Iluminación integrada en estantes, puertas y cajones, con sensores y encendido a distancia.</p>
+<section class="section-features" aria-label="Lo que nos distingue">
+<div class="g4" data-reveal-group>
+<div class="feature">
+<p class="serif feature-num">01</p>
+<h2 class="serif title-sm">La luz como esencia</h2>
+<p class="text-sm">Iluminación integrada en estantes, puertas y cajones, con sensores y encendido a distancia.</p>
 </div>
-<div style="background: #0e0d0c; padding: 48px 36px;">
-<p class="serif" style="margin: 0 0 18px; font-size: 40px; line-height: 40px; color: #c29a5b; font-weight: 300;">02</p>
-<h2 class="serif" style="margin: 0 0 10px; font-size: 26px; line-height: 32px; font-weight: 400;">Lo ves antes de que exista</h2>
-<p style="margin: 0; font-size: 15px; line-height: 25px; color: #a39b8f;">Cada proyecto se diseña y se recorre en 3D antes de fabricarse.</p>
+<div class="feature">
+<p class="serif feature-num">02</p>
+<h2 class="serif title-sm">Lo ves antes de que exista</h2>
+<p class="text-sm">Cada proyecto se diseña y se recorre en 3D antes de fabricarse.</p>
 </div>
-<div style="background: #0e0d0c; padding: 48px 36px;">
-<p class="serif" style="margin: 0 0 18px; font-size: 40px; line-height: 40px; color: #c29a5b; font-weight: 300;">03</p>
-<h2 class="serif" style="margin: 0 0 10px; font-size: 26px; line-height: 32px; font-weight: 400;">Precisión CNC</h2>
-<p style="margin: 0; font-size: 15px; line-height: 25px; color: #a39b8f;">Mecanizado de seis caras y diseños calados propios: terminaciones exactas, sin margen de error.</p>
+<div class="feature">
+<p class="serif feature-num">03</p>
+<h2 class="serif title-sm">Precisión CNC</h2>
+<p class="text-sm">Mecanizado de seis caras y diseños calados propios: terminaciones exactas, sin margen de error.</p>
 </div>
-<div style="background: #0e0d0c; padding: 48px 36px;">
-<p class="serif" style="margin: 0 0 18px; font-size: 40px; line-height: 40px; color: #c29a5b; font-weight: 300;">04</p>
-<h2 class="serif" style="margin: 0 0 10px; font-size: 26px; line-height: 32px; font-weight: 400;">Oficio de familia</h2>
-<p style="margin: 0; font-size: 15px; line-height: 25px; color: #a39b8f;">Más de 20 años de carpintería. Lo que más nos elogian es la prolijidad.</p>
+<div class="feature">
+<p class="serif feature-num">04</p>
+<h2 class="serif title-sm">Oficio de familia</h2>
+<p class="text-sm">Más de 20 años de carpintería. Lo que más nos elogian es la prolijidad.</p>
 </div>
 </div>
 </section>
 
-<section id="proyectos" style="padding: 120px 0 96px;">
+<!--
+  ======================================================================
+  SECCIÓN "ENCENDÉ LA LUZ"  (pilar de marca: La luz como esencia)
+
+  CÓMO FUNCIONA
+  - Cada mueble es un <figure class="luz-pieza"> con UNA foto encendida
+    (img.luz-img-on). El JS crea debajo la capa "apagado".
+  - Sin JS se ve la foto encendida y el interruptor queda oculto.
+
+  HOY (sin fotos apagadas reales): el estado apagado se SIMULA con la misma
+  foto encendida oscurecida por CSS. Para centrar el oscurecimiento y el
+  brillo sobre el mueble se usa --luz-foco (posición x y, en %).
+
+  CUANDO TENGAN EL PAR REAL (misma toma, mismo encuadre, luces apagadas):
+  1. Guardar las fotos en img/, por ejemplo:
+       img/NOMBRE-apagado-800.webp  y  img/NOMBRE-apagado-1600.webp
+  2. Agregar al <figure class="luz-pieza"> el atributo:
+       data-off="img/NOMBRE-apagado-1600.webp"
+     y, opcional, para que el celular baje la versión liviana:
+       data-off-srcset="img/NOMBRE-apagado-800.webp 800w, img/NOMBRE-apagado-1600.webp 1600w"
+  Con data-off presente se usa la foto real y la simulación se desactiva sola.
+
+  VARIOS MUEBLES: copiar el <figure class="luz-pieza"> completo dentro de
+  .luz-marco, con su data-nombre (se usa para el selector) y agregarle el
+  atributo hidden a todos menos el primero. Con un solo mueble no aparece
+  ningún selector; con dos o más aparecen miniaturas debajo del interruptor.
+
+  PROPORCIÓN: 4:5 en celular. En escritorio, con la clase luz-vertical en
+  <section> la foto es 4:5 (ideal para vestidores y placares); sin esa clase
+  es 4:3 (cocinas, cristaleros horizontales). Se puede forzar con
+  --luz-ratio-movil y --luz-ratio en .luz-marco. Encuadre de cada foto con
+  --luz-pos (object-position).
+  ======================================================================
+-->
+<section id="luz" class="luz-seccion luz-vertical" aria-labelledby="luz-titulo">
+  <div class="wrap luz-grid">
+    <div class="luz-texto" data-reveal-group>
+      <p class="label luz-label">La luz como esencia</p>
+      <h2 id="luz-titulo" class="serif h2 luz-titulo">Un mueble cambia cuando se enciende.</h2>
+      <p class="luz-apoyo">Iluminación integrada en estantes, puertas y cajones.</p>
+    </div>
+
+    <div class="luz-escena" data-reveal="fade">
+      <div class="luz-marco">
+        <figure class="luz-pieza" data-nombre="Vestidor de perfil negro" style="--luz-foco: 45% 50%; --luz-pos: 50% 55%;">
+          <img class="luz-img-on" loading="lazy" decoding="async"
+               src="img/vestidor-perfil-negro-calido-800.webp"
+               srcset="img/vestidor-perfil-negro-calido-800.webp 800w, img/vestidor-perfil-negro-calido-1600.webp 1600w"
+               sizes="(max-width: 899px) 100vw, 560px"
+               width="1200" height="1600"
+               alt="Vestidor con puertas de perfil negro y vidrio, con luz LED cálida en estantes y laterales">
+        </figure>
+      </div>
+    </div>
+
+    <div class="luz-controles" data-reveal="fade" data-reveal-delay="300" hidden>
+      <button type="button" class="luz-interruptor" role="switch" aria-checked="true" aria-label="Luz del mueble">
+        <span class="luz-estado luz-estado-off" aria-hidden="true">Apagado</span>
+        <span class="luz-llave" aria-hidden="true"><span class="luz-palanca"></span></span>
+        <span class="luz-estado luz-estado-on" aria-hidden="true">Encendido</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="proyectos" class="section-projects">
 <div class="wrap">
-<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 48px;">
-<div>
-<p class="label" style="margin: 0 0 16px;">Proyectos</p>
-<h2 class="serif h2" style="margin: 0; font-size: 52px; line-height: 58px; font-weight: 300;">Cada pieza, única.</h2>
+<div class="projects-head">
+<div data-reveal-group>
+<p class="label label--section">Proyectos</p>
+<h2 class="serif h2">Cada pieza, única.</h2>
 </div>
-<a href="https://instagram.com/anderssolutions" target="_blank" rel="noopener" style="font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: #c29a5b;">Más en Instagram →</a>
+<a class="link-more" href="https://instagram.com/anderssolutions" target="_blank" rel="noopener" data-reveal="fade" data-reveal-delay="240">Más en Instagram →</a>
 </div>
-<div class="gal">
-<figure class="a"><img loading="lazy" src="img/cocina-marmol-luz-calida-800.webp" srcset="img/cocina-marmol-luz-calida-800.webp 800w, img/cocina-marmol-luz-calida-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 50vw" width="1600" height="1200" decoding="async" alt="Cocina blanca con mesada de mármol negro y luz cálida bajo alacenas"><figcaption>Cocinas</figcaption></figure>
-<figure class="b"><img loading="lazy" src="img/vestidor-perfil-negro-calido-800.webp" srcset="img/vestidor-perfil-negro-calido-800.webp 800w, img/vestidor-perfil-negro-calido-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 50vw" width="1200" height="1600" decoding="async" alt="Vestidor con puertas de perfil negro, vidrio y luz LED cálida"><figcaption>Vestidores</figcaption></figure>
-<figure class="c"><img loading="lazy" src="img/cristalero-bar-negro-800.webp" srcset="img/cristalero-bar-negro-800.webp 800w, img/cristalero-bar-negro-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 50vw" width="900" height="1600" decoding="async" alt="Cristalero bar negro con iluminación lateral"><figcaption>Cristaleros</figcaption></figure>
-<figure class="d"><img loading="lazy" src="img/cocina-isla-varillada-800.webp" srcset="img/cocina-isla-varillada-800.webp 800w, img/cocina-isla-varillada-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 50vw" width="1600" height="1200" decoding="async" alt="Cocina grafito con isla de frente varillado y mesada blanca"><figcaption>Cocinas</figcaption></figure>
-<figure class="e"><img loading="lazy" src="img/vestidor-gris-luz-perimetral-800.webp" srcset="img/vestidor-gris-luz-perimetral-800.webp 800w, img/vestidor-gris-luz-perimetral-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 50vw" width="720" height="1280" decoding="async" alt="Vestidor en tono gris con iluminación LED perimetral y percheros rebatibles"><figcaption>Vestidores</figcaption></figure>
+<!--
+  GALERÍA DE PROYECTOS — cómo agregar una foto
+  ============================================
+  1. Prepará dos versiones de la foto en formato .webp y subilas a la carpeta img/:
+       img/NOMBRE-800.webp    (800 px de ancho)
+       img/NOMBRE-1600.webp   (1600 px de ancho; se usa en el visor a pantalla completa)
+     NOMBRE: en minúsculas, sin espacios ni acentos. Ej.: placar-roble-puertas-corredizas
+  2. Copiá uno de los bloques <figure> ... </figure> de abajo y pegalo donde quieras
+     que aparezca (el orden de los bloques es el orden en la galería).
+  3. En la copia cambiá:
+       - data-cat: la categoría, tal cual se va a ver en el filtro
+         (Cocinas, Vestidores, Placares o Cristaleros). Si escribís una categoría
+         nueva, el botón de filtro aparece solo.
+       - NOMBRE en src y en srcset (las dos veces).
+       - width y height: el tamaño real en píxeles de la versión -1600
+         (por ejemplo 1600 y 1200 si es horizontal, 1200 y 1600 si es vertical).
+       - alt: una descripción de lo que se ve en la foto (para buscadores y lectores de pantalla).
+       - figcaption: la categoría en <span class="gal-cat"> y una frase corta en <span class="gal-desc">.
+  4. No hace falta tocar el CSS ni el JavaScript.
+-->
+<div class="gal-galeria" data-galeria data-reveal>
+<div class="gal-grid">
+
+<figure class="gal-item" data-cat="Cocinas">
+<img src="img/cocina-marmol-luz-calida-800.webp" srcset="img/cocina-marmol-luz-calida-800.webp 800w, img/cocina-marmol-luz-calida-1600.webp 1600w" sizes="(max-width: 1000px) 50vw, 400px" width="1600" height="1200" loading="lazy" decoding="async" alt="Cocina blanca con mesada de mármol negro y luz cálida bajo alacenas">
+<figcaption><span class="gal-cat">Cocinas</span> <span class="gal-desc">Mármol negro y luz cálida bajo alacenas</span></figcaption>
+</figure>
+
+<figure class="gal-item" data-cat="Cristaleros">
+<img src="img/cristalero-bar-negro-800.webp" srcset="img/cristalero-bar-negro-800.webp 800w, img/cristalero-bar-negro-1600.webp 1600w" sizes="(max-width: 1000px) 50vw, 400px" width="900" height="1600" loading="lazy" decoding="async" alt="Cristalero bar negro con iluminación lateral">
+<figcaption><span class="gal-cat">Cristaleros</span> <span class="gal-desc">Bar negro con iluminación lateral</span></figcaption>
+</figure>
+
+<figure class="gal-item" data-cat="Vestidores">
+<img src="img/vestidor-perfil-negro-calido-800.webp" srcset="img/vestidor-perfil-negro-calido-800.webp 800w, img/vestidor-perfil-negro-calido-1600.webp 1600w" sizes="(max-width: 1000px) 50vw, 400px" width="1200" height="1600" loading="lazy" decoding="async" alt="Vestidor con puertas de perfil negro, vidrio y luz LED cálida">
+<figcaption><span class="gal-cat">Vestidores</span> <span class="gal-desc">Perfil negro, vidrio y luz LED cálida</span></figcaption>
+</figure>
+
+<figure class="gal-item" data-cat="Vestidores">
+<img src="img/vestidor-gris-luz-perimetral-800.webp" srcset="img/vestidor-gris-luz-perimetral-800.webp 800w, img/vestidor-gris-luz-perimetral-1600.webp 1600w" sizes="(max-width: 1000px) 50vw, 400px" width="720" height="1280" loading="lazy" decoding="async" alt="Vestidor en tono gris con iluminación LED perimetral y percheros rebatibles">
+<figcaption><span class="gal-cat">Vestidores</span> <span class="gal-desc">Gris con luz perimetral y percheros rebatibles</span></figcaption>
+</figure>
+
+<figure class="gal-item" data-cat="Cocinas">
+<img src="img/cocina-isla-varillada-800.webp" srcset="img/cocina-isla-varillada-800.webp 800w, img/cocina-isla-varillada-1600.webp 1600w" sizes="(max-width: 1000px) 50vw, 400px" width="1600" height="1200" loading="lazy" decoding="async" alt="Cocina grafito con isla de frente varillado y mesada blanca">
+<figcaption><span class="gal-cat">Cocinas</span> <span class="gal-desc">Grafito, isla varillada y mesada blanca</span></figcaption>
+</figure>
+
+<figure class="gal-item" data-cat="Cristaleros">
+<img src="img/cristalero-vinoteca-calido-800.webp" srcset="img/cristalero-vinoteca-calido-800.webp 800w, img/cristalero-vinoteca-calido-1600.webp 1600w" sizes="(max-width: 1000px) 50vw, 400px" width="1600" height="1200" loading="lazy" decoding="async" alt="Cristalero de perfil negro con vinoteca integrada, estantes de vidrio y luz cálida">
+<figcaption><span class="gal-cat">Cristaleros</span> <span class="gal-desc">Vinoteca integrada y luz cálida</span></figcaption>
+</figure>
+
+</div>
 </div>
 </div>
 </section>
 
-<section id="lineas" style="padding: 96px 0; background: #141210; border-top: 1px solid #3a352f; border-bottom: 1px solid #3a352f;">
+<section id="lineas" class="section-lines">
 <div class="wrap">
-<div style="max-width: 640px; margin-bottom: 56px;">
-<p class="label" style="margin: 0 0 16px;">Líneas</p>
-<h2 class="serif h2" style="margin: 0 0 18px; font-size: 52px; line-height: 58px; font-weight: 300;">Tres niveles. Un mismo estándar.</h2>
-<p style="margin: 0; font-size: 16px; line-height: 26px; color: #a39b8f;">Cocinas, placares y vestidores en tres líneas. Te mostramos la diferencia en persona.</p>
+<div class="section-intro lines-intro" data-reveal-group>
+<p class="label label--section">Líneas</p>
+<h2 class="serif h2">Tres niveles. Un mismo estándar.</h2>
+<p class="text-intro">Cocinas, placares y vestidores en tres líneas. Te mostramos la diferencia en persona.</p>
 </div>
-<div class="g3 line">
-<div style="background: #141210; padding: 40px 36px; display: flex; flex-direction: column;">
-<p class="label" style="margin: 0; height: 16px;"></p>
-<h3 class="serif" style="margin: 12px 0 4px; font-size: 34px; line-height: 40px; font-weight: 400;">Classic</h3>
-<p style="margin: 0 0 24px; font-size: 15px; color: #a39b8f;">Lo esencial, bien hecho.</p>
-<ul style="list-style: none; padding: 0; margin: 0 0 32px; font-size: 15px; line-height: 22px; flex: 1;">
+<div class="g3 line" data-reveal-group>
+<div class="tier">
+<p class="label tier-tag"></p>
+<h3 class="serif tier-name">Classic</h3>
+<p class="tier-sub">Lo esencial, bien hecho.</p>
+<ul class="tier-list">
 <li>Melamina en colores clásicos</li>
 <li>Herrajes de línea</li>
 <li>Diseño a medida</li>
 </ul>
-<a class="btn" href="#contacto" style="text-align: center;">Consultar</a>
+<a class="btn btn-block" href="#contacto">Consultar</a>
 </div>
-<div style="background: #2c241a; padding: 40px 36px; display: flex; flex-direction: column;">
-<p class="label" style="margin: 0; height: 16px;">Recomendada</p>
-<h3 class="serif" style="margin: 12px 0 4px; font-size: 34px; line-height: 40px; font-weight: 400;">Premium</h3>
-<p style="margin: 0 0 24px; font-size: 15px; color: #b8b0a4;">Cierre suave y luz.</p>
-<ul style="list-style: none; padding: 0; margin: 0 0 32px; font-size: 15px; line-height: 22px; flex: 1;">
+<div class="tier tier--premium">
+<p class="label tier-tag">Recomendada</p>
+<h3 class="serif tier-name">Premium</h3>
+<p class="tier-sub">Cierre suave y luz.</p>
+<ul class="tier-list">
 <li>Frentes texturados</li>
 <li>Herrajes de buena calidad con cierre suave</li>
 <li>Iluminación LED bajo alacena</li>
 </ul>
-<a class="btn" href="#contacto" style="text-align: center;">Consultar</a>
+<a class="btn btn-block" href="#contacto">Consultar</a>
 </div>
-<div style="background: #141210; padding: 40px 36px; display: flex; flex-direction: column;">
-<p class="label" style="margin: 0; height: 16px;">Experiencia completa</p>
-<h3 class="serif" style="margin: 12px 0 4px; font-size: 34px; line-height: 40px; font-weight: 400; color: #c29a5b;">Elite</h3>
-<p style="margin: 0 0 24px; font-size: 15px; color: #a39b8f;">Todo, sin concesiones.</p>
-<ul style="list-style: none; padding: 0; margin: 0 0 32px; font-size: 15px; line-height: 22px; flex: 1;">
+<div class="tier tier--elite">
+<p class="label tier-tag">Experiencia completa</p>
+<h3 class="serif tier-name">Elite</h3>
+<p class="tier-sub">Todo, sin concesiones.</p>
+<ul class="tier-list">
 <li>Frentes Rauvisio o laqueados</li>
 <li>Herrajes Blum con apertura push</li>
 <li>Luz integrada en cada puerta y cajón</li>
 <li>Cristaleros de aluminio negro y vidrio fumé</li>
 </ul>
-<a class="btn btn-pri" href="#contacto" style="text-align: center;">Quiero una Elite</a>
+<a class="btn btn-pri btn-block" href="#contacto">Quiero una Elite</a>
 </div>
 </div>
 </div>
 </section>
 
-<section id="proceso" style="padding: 120px 0;">
+<section id="proceso" class="section-process">
 <div class="wrap">
-<p class="label" style="margin: 0 0 16px;">Cómo trabajamos</p>
-<h2 class="serif h2" style="margin: 0 0 56px; font-size: 52px; line-height: 58px; font-weight: 300; max-width: 640px;">De la idea al mueble encendido.</h2>
-<ol class="steps" style="list-style: none; padding: 0; margin: 0;">
-<li style="border-top: 1px solid #c29a5b; padding-top: 24px;">
-<p class="label" style="margin: 0 0 12px;">Paso 1</p>
-<h3 class="serif" style="margin: 0 0 8px; font-size: 26px; line-height: 32px; font-weight: 400;">Escuchamos</h3>
-<p style="margin: 0; font-size: 15px; line-height: 25px; color: #a39b8f;">Nos contás cómo soñás tu espacio y nos involucramos como si fuera para nosotros.</p>
+<div class="process-intro" data-reveal-group>
+<p class="label label--section">Cómo trabajamos</p>
+<h2 class="serif h2">De la idea al mueble encendido.</h2>
+</div>
+<ol class="steps" data-reveal-group data-steps>
+<li class="step">
+<p class="label step-label">Paso 1</p>
+<h3 class="serif title-sm">Escuchamos</h3>
+<p class="text-sm">Nos contás cómo soñás tu espacio y nos involucramos como si fuera para nosotros.</p>
 </li>
-<li style="border-top: 1px solid #3a352f; padding-top: 24px;">
-<p class="label" style="margin: 0 0 12px;">Paso 2</p>
-<h3 class="serif" style="margin: 0 0 8px; font-size: 26px; line-height: 32px; font-weight: 400;">Diseñamos en 3D</h3>
-<p style="margin: 0; font-size: 15px; line-height: 25px; color: #a39b8f;">Ves tu mueble con materiales y luz antes de fabricarlo.</p>
+<li class="step">
+<p class="label step-label">Paso 2</p>
+<h3 class="serif title-sm">Diseñamos en 3D</h3>
+<p class="text-sm">Ves tu mueble con materiales y luz antes de fabricarlo.</p>
 </li>
-<li style="border-top: 1px solid #3a352f; padding-top: 24px;">
-<p class="label" style="margin: 0 0 12px;">Paso 3</p>
-<h3 class="serif" style="margin: 0 0 8px; font-size: 26px; line-height: 32px; font-weight: 400;">Fabricamos</h3>
-<p style="margin: 0; font-size: 15px; line-height: 25px; color: #a39b8f;">En nuestro taller, con tecnología de punta: corte y mecanizado CNC de precisión.</p>
+<li class="step">
+<p class="label step-label">Paso 3</p>
+<h3 class="serif title-sm">Fabricamos</h3>
+<p class="text-sm">En nuestro taller, con tecnología de punta: corte y mecanizado CNC de precisión.</p>
 </li>
-<li style="border-top: 1px solid #3a352f; padding-top: 24px;">
-<p class="label" style="margin: 0 0 12px;">Paso 4</p>
-<h3 class="serif" style="margin: 0 0 8px; font-size: 26px; line-height: 32px; font-weight: 400;">Instalamos</h3>
-<p style="margin: 0; font-size: 15px; line-height: 25px; color: #a39b8f;">Nuestro equipo lo coloca y lo deja funcionando.</p>
+<li class="step">
+<p class="label step-label">Paso 4</p>
+<h3 class="serif title-sm">Instalamos</h3>
+<p class="text-sm">Nuestro equipo lo coloca y lo deja funcionando.</p>
 </li>
 </ol>
 </div>
 </section>
 
-<section id="nosotros" style="padding: 96px 0 120px; border-top: 1px solid #3a352f;">
+<!--
+  ======================================================================
+  SECCIÓN "LO VES EN 3D ANTES DE QUE EXISTA"  (comparador render / foto real)
+
+  ACTIVA con un par de prueba (placard gris). Para ocultarla, agregar hidden a <section>.
+  El render se alineó con la foto por perspectiva, así coinciden al deslizar.
+
+  PARA ACTIVARLA:
+  1. Exportar el render 3D y sacar la foto real del mueble terminado desde
+     el MISMO punto de vista y con el MISMO encuadre (si no, no coinciden
+     al deslizar). Guardar en img/:
+       img/render-NOMBRE-800.webp   img/render-NOMBRE-1600.webp   (render 3D)
+       img/NOMBRE-800.webp          img/NOMBRE-1600.webp          (foto real)
+     Las dos con la misma proporción (idealmente 16:9 o 4:3).
+  2. Reemplazar NOMBRE en las rutas de abajo (src y srcset de las dos imágenes)
+     y completar los textos alt y data-nombre.
+  3. Borrar el atributo hidden de <section id="render" ...>.
+
+  VARIOS PARES: copiar el <figure class="cmp-par"> completo dentro de
+  .cmp-escena y agregarle hidden a todos menos el primero. Con dos o más
+  aparecen miniaturas para cambiar de mueble; con uno solo, no.
+
+  PROPORCIÓN: 4:5 en celular y 16:9 en escritorio (se cambia con
+  --cmp-ratio-movil y --cmp-ratio en .cmp-escena). Encuadre con --cmp-obj.
+  ======================================================================
+-->
+<section id="render" class="cmp-seccion cmp-vertical" aria-labelledby="cmp-titulo">
+  <div class="wrap">
+    <div class="cmp-cabecera" data-reveal-group>
+      <p class="label cmp-label">Diseño 3D</p>
+      <h2 id="cmp-titulo" class="serif h2 cmp-titulo">Lo ves antes de que exista.</h2>
+      <p class="cmp-apoyo">El mismo mueble: a la izquierda el diseño, a la derecha terminado.</p>
+    </div>
+
+    <div class="cmp-escena" data-reveal="fade">
+      <figure class="cmp-par" data-nombre="Placard gris">
+        <img class="cmp-img" loading="lazy" decoding="async"
+             src="img/placard-gris-800.webp"
+             srcset="img/placard-gris-800.webp 800w, img/placard-gris-1600.webp 1600w"
+             sizes="(max-width: 900px) 100vw, 560px"
+             width="1600" height="2001"
+             alt="Placard gris con cajones, estantes y pantalonero, terminado e instalado">
+        <span class="cmp-etiqueta cmp-etiqueta-real" aria-hidden="true">Resultado real</span>
+        <div class="cmp-capa-render">
+          <img class="cmp-img" loading="lazy" decoding="async"
+               src="img/render-placard-gris-800.webp"
+               srcset="img/render-placard-gris-800.webp 800w, img/render-placard-gris-1600.webp 1600w"
+               sizes="(max-width: 900px) 100vw, 560px"
+               width="1600" height="2001"
+               alt="Render 3D del mismo placard antes de fabricarse">
+          <span class="cmp-etiqueta cmp-etiqueta-render" aria-hidden="true">Render 3D</span>
+        </div>
+        <input class="cmp-rango" type="range" min="0" max="100" step="1" value="50"
+               aria-label="Comparar render 3D y resultado real">
+        <span class="cmp-manija" aria-hidden="true">
+          <span class="cmp-linea"></span>
+          <span class="cmp-tirador">
+            <svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M6 1 1 6l5 5M16 1l5 5-5 5"/></svg>
+          </span>
+        </span>
+      </figure>
+    </div>
+
+    <div class="cmp-controles">
+      <p class="cmp-ayuda" aria-hidden="true">Deslizá para comparar</p>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros" class="section-about">
 <div class="wrap split">
-<div>
-<p class="label" style="margin: 0 0 16px;">Nosotros</p>
-<h2 class="serif h2" style="margin: 0 0 24px; font-size: 52px; line-height: 58px; font-weight: 300;">Una historia construida en familia.</h2>
-<p style="margin: 0 0 18px; font-size: 17px; line-height: 29px; color: #d8d2c8;">Empezamos hace más de 20 años como un taller de carpintería. Hoy trabajamos con maquinaria de punta, sin perder lo que nos trajo hasta acá: el cuidado de cada detalle y el trato cercano.</p>
-<p style="margin: 0 0 40px; font-size: 17px; line-height: 29px; color: #d8d2c8;">Cada mueble lleva nuestra firma.</p>
-<div style="display: inline-flex; flex-direction: column; align-items: flex-end;">
-<span class="wm" role="img" aria-label="AndersSolutions" style="width: 260px; height: 124px;"></span>
-<span style="margin-top: 4px; font-size: 11px; line-height: 14px; letter-spacing: .36em; text-transform: uppercase; color: #a39b8f;"><span style="text-transform: none; letter-spacing: .08em; margin-right: 6px;">by</span>Saylin &amp; Andres</span>
+<div class="about-text" data-reveal-group>
+<p class="label label--section">Nosotros</p>
+<h2 class="serif h2">Una historia construida en familia.</h2>
+<p class="lead">Empezamos hace más de 20 años como un taller de carpintería. Hoy trabajamos con maquinaria de punta, sin perder lo que nos trajo hasta acá: el cuidado de cada detalle y el trato cercano.</p>
+<p class="lead lead--last">Cada mueble lleva nuestra firma.</p>
+<div class="signature">
+<span class="wm wm--signature" role="img" aria-label="AndersSolutions"></span>
+<span class="signature-by"><span class="signature-by-small">by</span>Saylin &amp; Andres</span>
 </div>
 </div>
-<figure style="margin: 0; height: 560px; overflow: hidden; background: #1a1816;">
-<img loading="lazy" src="img/cocina-isla-varillada-800.webp" srcset="img/cocina-isla-varillada-800.webp 800w, img/cocina-isla-varillada-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 50vw" width="1600" height="1200" decoding="async" alt="Cocina grafito con isla varillada" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+<!-- PENDIENTE: esta foto (cocina-isla-varillada) también está en la galería de Proyectos. Reemplazar por una foto propia de Nosotros (taller, equipo o detalle de oficio). -->
+<figure class="about-media" data-reveal="fade" data-parallax>
+<img loading="lazy" src="img/cocina-isla-varillada-800.webp" srcset="img/cocina-isla-varillada-800.webp 800w, img/cocina-isla-varillada-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 50vw" width="1600" height="1200" decoding="async" alt="Cocina grafito con isla varillada">
 </figure>
 </div>
 </section>
 
-<section id="contacto" style="padding: 120px 0; background: #000000; text-align: center;">
-<div class="wrap">
-<p class="label" style="margin: 0 0 20px;">Contacto</p>
-<h2 class="serif h2" style="margin: 0 auto 20px; font-size: 56px; line-height: 62px; font-weight: 300; max-width: 760px;">Contanos qué tenés en mente.</h2>
-<p style="margin: 0 auto 16px; font-size: 17px; line-height: 28px; color: #a39b8f; max-width: 520px;">Te respondemos por WhatsApp y coordinamos para mostrarte opciones.</p>
-<p class="label" style="margin: 0 auto 44px; color: #d8d2c8;">CABA · Canning · Ezeiza · Zona sur y alrededores</p>
-<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<section id="contacto" class="section-contact">
+<div class="wrap" data-reveal-group>
+<p class="label contact-label">Contacto</p>
+<h2 class="serif h2 h2--lg">Contanos qué tenés en mente.</h2>
+<p class="contact-text">Te respondemos por WhatsApp y coordinamos para mostrarte opciones.</p>
+<p class="label contact-zones">CABA · Canning · Ezeiza · Zona sur y alrededores</p>
+<div class="btn-row btn-row--center">
 <a class="btn btn-pri" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
 <a class="btn" href="https://instagram.com/anderssolutions" target="_blank" rel="noopener">@anderssolutions</a>
 </div>
 </div>
 </section>
 
-<footer style="background: #000000; border-top: 1px solid #3a352f;">
-<div class="wrap" style="display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; padding-top: 32px; padding-bottom: 32px;">
-<span class="wm" role="img" aria-label="AndersSolutions" style="width: 130px; height: 62px;"></span>
-<p style="margin: 0; font-size: 13px; color: #a39b8f;">Taller en Villa Madero, Buenos Aires · Trabajamos en CABA, Canning, Ezeiza y alrededores</p>
+</main>
+
+<footer class="site-footer">
+<div class="wrap footer-bar">
+<span class="wm wm--footer" role="img" aria-label="AndersSolutions"></span>
+<p class="footer-text">Taller en Villa Madero, Buenos Aires · Trabajamos en CABA, Canning, Ezeiza y alrededores</p>
 </div>
 </footer>
 
 </div>
 <a class="wa-float" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.6a8.2 8.2 0 0 1-12.1 7.2L4 20l1.3-3.7A8.2 8.2 0 1 1 20 11.6z"/><path d="M9.2 8.6c.2-.4.5-.4.8-.4h.5c.2 0 .4.1.5.4l.6 1.5c.1.2 0 .5-.1.6l-.5.6c.6 1.1 1.4 1.9 2.5 2.5l.6-.5c.2-.2.4-.2.6-.1l1.5.6c.3.1.4.3.4.5v.5c0 .3-.1.6-.4.8-.6.4-1.4.5-2.2.2a8.6 8.6 0 0 1-4.7-4.7c-.3-.8-.2-1.6.2-2.3z"/></svg></a>
+<script src="js/site.js" defer></script>
+<script src="js/galeria.js" defer></script>
+<script src="js/interactivos.js" defer></script>
 </body>
 </html>

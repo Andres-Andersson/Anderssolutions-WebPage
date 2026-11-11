@@ -1,0 +1,307 @@
+/* =========================================================
+   AndersSolutions — estilos base del sitio
+   Dueño: index.html / css/site.css / js/site.js
+   Movimiento: lento y contenido (600–900ms, var(--ease)).
+   Solo se animan transform y opacity.
+   ========================================================= */
+
+:root{
+  --bg:#0e0d0c;
+  --bg-alt:#141210;
+  --negro:#000;
+  --texto:#f3efe8;
+  --texto-2:#d8d2c8;
+  --mudo:#a39b8f;
+  --linea:#3a352f;
+  --bronce:#c29a5b;
+  --bronce-claro:#d4ae72;
+  --premium:#2c241a;
+  --serif:'Cormorant Garamond','Times New Roman',serif;
+  --sans:'Jost','Helvetica Neue',Arial,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+
+  /* derivados internos */
+  --header-h:84px;
+  --superficie:#1a1816;   /* fondo de fotos mientras cargan */
+  --dur:.9s;
+  --reveal-shift:24px;
+}
+
+/* ---------- Base ---------- */
+html{scroll-behavior:smooth}
+section{scroll-margin-top:var(--header-h)}
+body{margin:0;background:var(--bg);color:var(--texto);font-family:var(--sans);font-weight:300}
+a{color:var(--texto);text-decoration:none}
+a:hover{color:var(--bronce)}
+.page{background:var(--bg);color:var(--texto);width:100%}
+
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.label{font-size:12px;line-height:16px;letter-spacing:.28em;text-transform:uppercase;color:var(--bronce);font-weight:400}
+.label--section{margin:0 0 16px}
+.serif{font-family:var(--serif)}
+
+/* ---------- Botones ---------- */
+.btn{display:inline-block;font-family:inherit;font-size:12px;letter-spacing:.24em;text-transform:uppercase;padding:16px 26px;border-radius:2px;border:1px solid var(--mudo);color:var(--texto);background:transparent}
+.btn:hover{border-color:var(--texto);color:var(--texto)}
+.btn-pri{background:var(--bronce);border-color:var(--bronce);color:var(--bg)}
+.btn-pri:hover{background:var(--bronce-claro);border-color:var(--bronce-claro);color:var(--bg)}
+.btn-block{text-align:center}
+.btn-header{padding:12px 20px}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap}
+.btn-row--center{justify-content:center}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--bronce);outline-offset:3px}
+
+/* ---------- Tipografía ---------- */
+.h1{margin:0;font-size:76px;line-height:80px;font-weight:300;letter-spacing:.005em}
+.h2{margin:0;font-size:52px;line-height:58px;font-weight:300}
+.h2--lg{font-size:56px;line-height:62px}
+.title-sm{margin:0 0 8px;font-size:26px;line-height:32px;font-weight:400}
+.text-sm{margin:0;font-size:15px;line-height:25px;color:var(--mudo)}
+.text-intro{margin:0;font-size:16px;line-height:26px;color:var(--mudo)}
+.lead{margin:0 0 18px;font-size:17px;line-height:29px;color:var(--texto-2)}
+.lead--last{margin-bottom:40px}
+
+/* ---------- Firma (wordmark) ---------- */
+.wm{display:block;background:url(../img/anderssolutions-firma-blanca.svg) left center/contain no-repeat}
+.wm--header{width:168px;height:80px}
+.wm--signature{width:260px;height:124px}
+.wm--footer{width:130px;height:62px}
+
+/* ---------- Header ---------- */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:40}
+/* Capa sólida (fondo + blur + filete). Se funde con opacity. */
+.site-header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(14,13,12,.84);-webkit-backdrop-filter:blur(16px) saturate(120%);backdrop-filter:blur(16px) saturate(120%);border-bottom:1px solid var(--linea);transition:opacity .7s var(--ease)}
+/* Velo suave para legibilidad mientras el header es transparente sobre el hero */
+.site-header::after{content:"";position:absolute;left:0;right:0;top:0;height:140%;z-index:-2;pointer-events:none;background:linear-gradient(180deg,rgba(14,13,12,.55),rgba(14,13,12,0));opacity:0;transition:opacity .7s var(--ease)}
+.js .site-header:not(.is-solid)::before{opacity:0}
+.js .site-header:not(.is-solid)::after{opacity:1}
+.menu-open .site-header::after{opacity:0}
+.header-bar{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--header-h)}
+.brand{display:block;flex:none}
+.header-actions{display:flex;align-items:center;gap:12px;flex:none}
+
+.nav{display:flex;gap:36px}
+.nav a{position:relative;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--texto-2)}
+.nav a::after{content:"";position:absolute;left:0;right:.24em;bottom:-8px;height:1px;background:var(--bronce);transform:scaleX(0);transform-origin:left center;transition:transform .7s var(--ease)}
+.nav a.is-active{color:var(--texto)}
+.nav a.is-active::after{transform:scaleX(1)}
+.nav a:hover{color:var(--bronce)}
+
+/* Botón hamburguesa (solo móvil y con JS) */
+.nav-toggle{display:none;position:relative;width:44px;height:44px;margin:0 -10px 0 0;padding:0;border:0;background:transparent;color:var(--texto);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nav-toggle-bar{position:absolute;left:11px;right:11px;height:1px;background:currentColor;transition:transform .6s var(--ease)}
+.nav-toggle-bar:first-child{top:18px}
+.nav-toggle-bar:last-child{top:25px}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:first-child{transform:translateY(3.5px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+
+/* Panel de menú móvil a pantalla completa */
+.mobile-menu{display:none}
+.menu-open,.menu-open body{overflow:hidden}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;display:flex;align-items:center;box-sizing:border-box;padding-top:var(--header-h);min-height:844px;min-height:max(640px,100svh);isolation:isolate}
+.hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden;background:var(--bg)}
+.hero-bg,.hero-video,.hero-shade{position:absolute;inset:0;width:100%;height:100%}
+.hero-bg{background:url(../img/cristalero-vinoteca-calido.jpg) center/cover no-repeat;background-image:image-set(url(../img/cristalero-vinoteca-calido-1600.webp) type("image/webp"),url(../img/cristalero-vinoteca-calido.jpg) type("image/jpeg"));transform-origin:62% 45%}
+.hero-video{object-fit:cover;opacity:0;transition:opacity 1.2s var(--ease)}
+.hero-video.is-playing{opacity:1}
+.hero-shade{background:linear-gradient(90deg,rgba(14,13,12,.92) 0%,rgba(14,13,12,.72) 38%,rgba(14,13,12,.15) 70%)}
+.hero-wrap{width:100%}
+.hero-content{max-width:620px;padding:96px 0}
+.hero-label{margin:0 0 28px}
+.hero-line{display:inline-block}
+.hero-text{margin:28px 0 44px;font-size:18px;line-height:30px;color:var(--texto-2);max-width:520px}
+
+/* Indicador de scroll: un filete fino con un punto bronce que baja lento */
+.hero-scroll{position:absolute;left:50%;bottom:28px;width:1px;height:56px;margin-left:-.5px;overflow:hidden;background:rgba(243,239,232,.22)}
+.hero-scroll-dot{position:absolute;left:0;top:0;width:1px;height:18px;background:var(--bronce);transform:translateY(-18px)}
+
+/* ---------- Diferenciales (01–04) ---------- */
+/* Las líneas divisorias se dibujan con box-shadow de cada tarjeta para que
+   el fundido de aparición no deje ver un fondo de color detrás. */
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:1px;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1px;border:1px solid var(--linea)}
+.g4>*,.g3>*{box-shadow:0 0 0 1px var(--linea)}
+.section-features{padding:0}
+.feature{position:relative;background:var(--bg);padding:48px 36px}
+.feature-num{margin:0 0 18px;font-size:40px;line-height:40px;color:var(--bronce);font-weight:300}
+.feature .title-sm{margin-bottom:10px}
+/* Filete bronce que se dibuja al entrar (solo con JS) */
+.js .feature::before{content:"";position:absolute;left:36px;top:-1px;width:64px;height:1px;background:var(--bronce);transform:scaleX(0);transform-origin:left center;transition:transform 1.1s var(--ease) calc(var(--reveal-delay,0ms) + 350ms)}
+.js .feature.is-revealed::before{transform:scaleX(1)}
+
+/* ---------- Proyectos (cabecera) ---------- */
+.section-projects{padding:120px 0 96px}
+.projects-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+.link-more{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--bronce)}
+/* La galería (filtros, mosaico y visor) está en css/galeria.css */
+
+/* ---------- Líneas ---------- */
+.section-lines{padding:96px 0;background:var(--bg-alt);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.section-intro{max-width:640px;margin-bottom:56px}
+.lines-intro .h2{margin-bottom:18px}
+.feat li,.line li{padding:10px 0;border-top:1px solid var(--linea)}
+.tier{position:relative;isolation:isolate;background:var(--bg-alt);padding:40px 36px;display:flex;flex-direction:column}
+.tier--premium{background:var(--premium)}
+.tier-tag{margin:0;height:16px}
+.tier-name{margin:12px 0 4px;font-size:34px;line-height:40px;font-weight:400}
+.tier--elite .tier-name{color:var(--bronce)}
+.tier-sub{margin:0 0 24px;font-size:15px;color:var(--mudo)}
+.tier--premium .tier-sub{color:#b8b0a4}
+.tier-list{list-style:none;padding:0;margin:0 0 32px;font-size:15px;line-height:22px;flex:1}
+/* Hover: luz muy leve desde arriba; Elite con resplandor cálido */
+.tier::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;background:radial-gradient(120% 70% at 50% 0%,rgba(243,239,232,.05),rgba(243,239,232,0) 70%);transition:opacity .8s var(--ease)}
+.tier--elite::after{background:radial-gradient(110% 80% at 50% 0%,rgba(194,154,91,.14),rgba(194,154,91,0) 70%),radial-gradient(90% 50% at 50% 100%,rgba(194,154,91,.06),rgba(194,154,91,0) 70%)}
+.tier:focus-within::after{opacity:1}
+@media (hover:hover){.tier:hover::after{opacity:1}}
+
+/* ---------- Proceso ---------- */
+.section-process{padding:120px 0}
+.process-intro .h2{margin-bottom:56px;max-width:640px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:32px;list-style:none;padding:0;margin:0}
+.step{position:relative;border-top:1px solid var(--linea);padding-top:24px}
+.step:first-child{border-top-color:var(--bronce)}
+.step-label{margin:0 0 12px}
+/* Línea de progreso: con JS el filete bronce de cada paso se llena según el scroll */
+.js .step{border-top-color:var(--linea)}
+.js .step::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--bronce);transform:scaleX(var(--fill,0));transform-origin:left center;transition:transform .35s var(--ease)}
+.js .step:first-child{--fill:1}
+
+/* ---------- Nosotros ---------- */
+.section-about{padding:96px 0 120px;border-top:1px solid var(--linea)}
+/* Si el comparador 3D (#render, fondo alterno con filetes) está activo, ya hay filete arriba */
+.cmp-seccion:not([hidden])+.section-about{border-top:0}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:64px;align-items:center}
+.about-text .h2{margin-bottom:24px}
+.signature{display:inline-flex;flex-direction:column;align-items:flex-end}
+.signature-by{margin-top:4px;font-size:11px;line-height:14px;letter-spacing:.36em;text-transform:uppercase;color:var(--mudo)}
+.signature-by-small{text-transform:none;letter-spacing:.08em;margin-right:6px}
+.about-media{margin:0;height:560px;overflow:hidden;background:var(--superficie)}
+.about-media img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ---------- Contacto ---------- */
+.section-contact{padding:120px 0;background:var(--negro);text-align:center}
+.contact-label{margin:0 0 20px}
+.section-contact .h2{margin:0 auto 20px;max-width:760px}
+.contact-text{margin:0 auto 16px;font-size:17px;line-height:28px;color:var(--mudo);max-width:520px}
+.contact-zones{margin:0 auto 44px;color:var(--texto-2)}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--negro);border-top:1px solid var(--linea)}
+.footer-bar{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:32px;padding-bottom:32px}
+.footer-text{margin:0;font-size:13px;color:var(--mudo)}
+
+/* ---------- WhatsApp flotante ---------- */
+.wa-float{display:none;position:fixed;right:18px;bottom:18px;z-index:20;width:58px;height:58px;border-radius:50%;background:var(--bronce);color:var(--bg);align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.45);transition:opacity .7s var(--ease),transform .7s var(--ease),visibility 0s linear 0s}
+.wa-float:hover{color:var(--bg);background:var(--bronce-claro)}
+.wa-float svg{width:28px;height:28px}
+/* Con JS aparece recién después del hero */
+.js .wa-float:not(.is-visible),.menu-open .wa-float{opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(0,16px,0);transition:opacity .5s var(--ease),transform .5s var(--ease),visibility 0s linear .5s}
+
+/* =========================================================
+   Sistema de aparición al scroll
+   - [data-reveal]            sube 24px + fundido (por defecto = "up")
+   - [data-reveal="fade"]     solo fundido
+   - [data-reveal-delay="ms"] retardo propio
+   - [data-reveal-group]      sus hijos directos aparecen escalonados
+                              (data-reveal-step="ms", por defecto 110;
+                              data-reveal-group="fade" para solo fundido)
+   Los estados ocultos solo existen con .js y sin reduced-motion.
+   ========================================================= */
+@media (prefers-reduced-motion:no-preference){
+  .js [data-reveal],
+  .js [data-reveal-group]>*{
+    opacity:0;
+    transform:translate3d(0,var(--reveal-shift),0);
+    transition:opacity var(--dur) var(--ease) var(--reveal-delay,0ms),transform var(--dur) var(--ease) var(--reveal-delay,0ms);
+  }
+  .js [data-reveal="fade"],
+  .js [data-reveal-group="fade"]>*{transform:none}
+  .js [data-reveal].is-revealed,
+  .js [data-reveal-group]>.is-revealed{opacity:1;transform:none}
+
+  /* Hero: entrada escalonada (CSS puro, no depende de site.js) */
+  .js .hero-label,.js .hero-line,.js .hero-text,.js .hero-actions{animation:as-rise .9s var(--ease) both}
+  .js .hero-label{animation-delay:.15s}
+  .js .hero-line:nth-of-type(1){animation-delay:.3s}
+  .js .hero-line:nth-of-type(2){animation-delay:.45s}
+  .js .hero-text{animation-delay:.65s}
+  .js .hero-actions{animation-delay:.8s}
+  .js .hero-scroll{animation:as-fade 1.2s var(--ease) 1.4s both}
+
+  /* Ken Burns muy lento */
+  .hero-bg{animation:as-kenburns 36s ease-in-out infinite alternate}
+  .hero-scroll-dot{animation:as-scroll 2.8s var(--ease) 2s infinite}
+
+  /* Parallax leve de la foto de Nosotros (valor desde site.js) */
+  .js .about-media img{transform:translate3d(0,var(--parallax,0px),0) scale(1.1);will-change:transform}
+
+  /* Menú móvil: links entran escalonados */
+  .js .mobile-menu-links a,.js .mobile-menu-cta{opacity:0;transform:translate3d(0,16px,0);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .js .mobile-menu.is-open .mobile-menu-links a,.js .mobile-menu.is-open .mobile-menu-cta{opacity:1;transform:none;transition-delay:calc(var(--i,0) * 70ms + 120ms)}
+}
+
+@keyframes as-rise{from{opacity:0;transform:translate3d(0,24px,0)}to{opacity:1;transform:none}}
+@keyframes as-fade{from{opacity:0}to{opacity:1}}
+@keyframes as-kenburns{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.08) translate3d(-1.2%,-.8%,0)}}
+@keyframes as-scroll{0%{transform:translateY(-18px)}70%,100%{transform:translateY(56px)}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;animation-iteration-count:1 !important}
+  .hero-scroll-dot{transform:none}
+}
+
+/* =========================================================
+   Tablet y móvil (≤960px): el nav de escritorio no entra
+   (firma + 4 links + WhatsApp necesitan ~950px), se usa la hamburguesa.
+   El valor 960 está repetido en js/site.js (mobileMQ).
+   ========================================================= */
+@media (max-width:960px){
+  .js .nav{display:none}
+  .js .nav-toggle{display:block}
+
+  .js .mobile-menu{display:flex;flex-direction:column;position:fixed;inset:0;z-index:30;box-sizing:border-box;padding:calc(var(--header-h) + 28px) 32px 40px;background:var(--bg);overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;transition:opacity .6s var(--ease),visibility 0s linear .6s}
+  .js .mobile-menu.is-open{opacity:1;visibility:visible;transition:opacity .6s var(--ease),visibility 0s}
+  .mobile-menu-links{display:flex;flex-direction:column;border-top:1px solid var(--linea)}
+  .mobile-menu-links a{display:block;padding:18px 0;border-bottom:1px solid var(--linea);font-family:var(--serif);font-size:40px;line-height:46px;font-weight:300;color:var(--texto)}
+  .mobile-menu-links a.is-active{color:var(--bronce)}
+  .mobile-menu-cta{margin-top:40px;text-align:center}
+}
+
+/* =========================================================
+   Móvil (≤760px)
+   ========================================================= */
+@media (max-width:760px){
+  .wrap{padding:0 20px}
+  .nav{display:none}
+  .h1{font-size:46px;line-height:50px}
+  .h2{font-size:36px;line-height:42px}
+
+  /* Ritmo vertical en móvil: 120→88 y 96→72 en todas las secciones */
+  .section-projects{padding:88px 0 72px}
+  .section-lines{padding:72px 0}
+  .section-process{padding:88px 0}
+  .section-about{padding:72px 0 88px}
+  .section-contact{padding:88px 0}
+
+  .hero-bg{background:url(../img/cristalero-vinoteca-calido-800.webp) center/cover no-repeat;transform-origin:50% 40%}
+  .hero-shade{background:linear-gradient(180deg,rgba(14,13,12,.55),rgba(14,13,12,.88))}
+
+  .wa-float{display:flex}
+
+  /* Header compacto para que entren firma + WhatsApp + menú */
+  .header-bar{gap:12px}
+  .wm--header{width:140px;height:66px}
+  .btn-header{padding:11px 14px;letter-spacing:.2em}
+  .js .mobile-menu{padding-left:20px;padding-right:20px}
+}
+
+/* Celulares muy angostos (≤374px, p. ej. iPhone SE de 1.ª gen.): firma y botón
+   más compactos para que entren firma + WhatsApp + menú sin scroll horizontal */
+@media (max-width:374px){
+  .header-bar{gap:8px}
+  .wm--header{width:118px;height:56px}
+  .btn-header{padding:10px 12px;letter-spacing:.16em}
+}
