@@ -19,8 +19,9 @@
   border-bottom: 1px solid var(--linea, #3a352f);
 }
 .cmp-seccion {
-  background: var(--bg-alt, #141210);
-  border-top: 1px solid var(--linea, #3a352f);
+  /* Va justo debajo de #luz (fondo alterno con filete abajo): fondo base
+     y filete inferior para separarla de Proyectos. */
+  background: var(--bg, #0e0d0c);
   border-bottom: 1px solid var(--linea, #3a352f);
 }
 .luz-label,
@@ -428,7 +429,7 @@
 /* Variante para pares verticales (fotos sacadas con el celular parado):
    agregar la clase "cmp-vertical" a <section id="render">.
    En celular ocupa todo el ancho en 4:5; en escritorio va en dos columnas,
-   texto a la izquierda y comparador a la derecha. */
+   comparador a la izquierda y texto a la derecha. */
 .cmp-vertical .cmp-escena { aspect-ratio: 4 / 5; }
 @media (min-width: 900px) {
   .cmp-vertical .wrap {
@@ -438,7 +439,8 @@
     column-gap: 64px;
     align-items: center;
   }
-  .cmp-vertical .cmp-cabecera { grid-column: 1; grid-row: 1 / span 2; margin-bottom: 0; }
-  .cmp-vertical .cmp-escena { grid-column: 2; grid-row: 1; aspect-ratio: 4 / 5; max-height: 82vh; justify-self: end; width: 100%; max-width: 560px; }
-  .cmp-vertical .cmp-controles { grid-column: 2; grid-row: 2; justify-self: end; width: 100%; max-width: 560px; }
+  /* Espejado respecto de #luz (que va justo arriba): comparador a la izquierda, texto a la derecha */
+  .cmp-vertical .cmp-cabecera { grid-column: 2; grid-row: 1 / span 2; margin-bottom: 0; }
+  .cmp-vertical .cmp-escena { grid-column: 1; grid-row: 1; aspect-ratio: 4 / 5; max-height: 82vh; justify-self: start; width: 100%; max-width: 560px; }
+  .cmp-vertical .cmp-controles { grid-column: 1; grid-row: 2; justify-self: start; width: 100%; max-width: 560px; }
 }

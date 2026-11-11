@@ -170,8 +170,6 @@ a:hover{color:var(--bronce)}
 
 /* ---------- Nosotros ---------- */
 .section-about{padding:96px 0 120px;border-top:1px solid var(--linea)}
-/* Si el comparador 3D (#render, fondo alterno con filetes) está activo, ya hay filete arriba */
-.cmp-seccion:not([hidden])+.section-about{border-top:0}
 .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:64px;align-items:center}
 .about-text .h2{margin-bottom:24px}
 .signature{display:inline-flex;flex-direction:column;align-items:flex-end}
