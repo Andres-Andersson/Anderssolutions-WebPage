@@ -19,9 +19,9 @@
   border-bottom: 1px solid var(--linea, #3a352f);
 }
 .cmp-seccion {
-  /* Va justo debajo de #luz (fondo alterno con filete abajo): fondo base
-     y filete inferior para separarla de Proyectos. */
-  background: var(--bg, #0e0d0c);
+  /* Orden: luz (alterno) → proceso (base) → comparador (alterno) → proyectos (base) */
+  background: var(--bg-alt, #141210);
+  border-top: 1px solid var(--linea, #3a352f);
   border-bottom: 1px solid var(--linea, #3a352f);
 }
 .luz-label,
