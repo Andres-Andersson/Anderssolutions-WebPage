@@ -184,6 +184,75 @@
   </div>
 </section>
 
+<!--
+  ======================================================================
+  SECCIÓN "LO VES EN 3D ANTES DE QUE EXISTA"  (comparador render / foto real)
+
+  ACTIVA con un par de prueba (placard gris). Para ocultarla, agregar hidden a <section>.
+  El render se alineó con la foto por perspectiva, así coinciden al deslizar.
+
+  PARA ACTIVARLA:
+  1. Exportar el render 3D y sacar la foto real del mueble terminado desde
+     el MISMO punto de vista y con el MISMO encuadre (si no, no coinciden
+     al deslizar). Guardar en img/:
+       img/render-NOMBRE-800.webp   img/render-NOMBRE-1600.webp   (render 3D)
+       img/NOMBRE-800.webp          img/NOMBRE-1600.webp          (foto real)
+     Las dos con la misma proporción (idealmente 16:9 o 4:3).
+  2. Reemplazar NOMBRE en las rutas de abajo (src y srcset de las dos imágenes)
+     y completar los textos alt y data-nombre.
+  3. Borrar el atributo hidden de <section id="render" ...>.
+
+  VARIOS PARES: copiar el <figure class="cmp-par"> completo dentro de
+  .cmp-escena y agregarle hidden a todos menos el primero. Con dos o más
+  aparecen miniaturas para cambiar de mueble; con uno solo, no.
+
+  PROPORCIÓN: 4:5 en celular y 16:9 en escritorio (se cambia con
+  --cmp-ratio-movil y --cmp-ratio en .cmp-escena). Encuadre con --cmp-obj.
+  ======================================================================
+-->
+<section id="render" class="cmp-seccion cmp-vertical" aria-labelledby="cmp-titulo">
+  <div class="wrap">
+    <div class="cmp-cabecera" data-reveal-group>
+      <p class="label cmp-label">Diseño 3D</p>
+      <h2 id="cmp-titulo" class="serif h2 cmp-titulo">Lo ves antes de que exista.</h2>
+      <p class="cmp-apoyo">El mismo mueble: a la izquierda el diseño, a la derecha terminado.</p>
+    </div>
+
+    <div class="cmp-escena" data-reveal="fade">
+      <figure class="cmp-par" data-nombre="Placard gris">
+        <img class="cmp-img" loading="lazy" decoding="async"
+             src="img/placard-gris-800.webp"
+             srcset="img/placard-gris-800.webp 800w, img/placard-gris-1600.webp 1600w"
+             sizes="(max-width: 900px) 100vw, 560px"
+             width="1600" height="2001"
+             alt="Placard gris con cajones, estantes y pantalonero, terminado e instalado">
+        <span class="cmp-etiqueta cmp-etiqueta-real" aria-hidden="true">Resultado real</span>
+        <div class="cmp-capa-render">
+          <img class="cmp-img" loading="lazy" decoding="async"
+               src="img/render-placard-gris-800.webp"
+               srcset="img/render-placard-gris-800.webp 800w, img/render-placard-gris-1600.webp 1600w"
+               sizes="(max-width: 900px) 100vw, 560px"
+               width="1600" height="2001"
+               alt="Render 3D del mismo placard antes de fabricarse">
+          <span class="cmp-etiqueta cmp-etiqueta-render" aria-hidden="true">Render 3D</span>
+        </div>
+        <input class="cmp-rango" type="range" min="0" max="100" step="1" value="50"
+               aria-label="Comparar render 3D y resultado real">
+        <span class="cmp-manija" aria-hidden="true">
+          <span class="cmp-linea"></span>
+          <span class="cmp-tirador">
+            <svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M6 1 1 6l5 5M16 1l5 5-5 5"/></svg>
+          </span>
+        </span>
+      </figure>
+    </div>
+
+    <div class="cmp-controles">
+      <p class="cmp-ayuda" aria-hidden="true">Deslizá para comparar</p>
+    </div>
+  </div>
+</section>
+
 <section id="proyectos" class="section-projects">
 <div class="wrap">
 <div class="projects-head">
@@ -326,75 +395,6 @@
 </li>
 </ol>
 </div>
-</section>
-
-<!--
-  ======================================================================
-  SECCIÓN "LO VES EN 3D ANTES DE QUE EXISTA"  (comparador render / foto real)
-
-  ACTIVA con un par de prueba (placard gris). Para ocultarla, agregar hidden a <section>.
-  El render se alineó con la foto por perspectiva, así coinciden al deslizar.
-
-  PARA ACTIVARLA:
-  1. Exportar el render 3D y sacar la foto real del mueble terminado desde
-     el MISMO punto de vista y con el MISMO encuadre (si no, no coinciden
-     al deslizar). Guardar en img/:
-       img/render-NOMBRE-800.webp   img/render-NOMBRE-1600.webp   (render 3D)
-       img/NOMBRE-800.webp          img/NOMBRE-1600.webp          (foto real)
-     Las dos con la misma proporción (idealmente 16:9 o 4:3).
-  2. Reemplazar NOMBRE en las rutas de abajo (src y srcset de las dos imágenes)
-     y completar los textos alt y data-nombre.
-  3. Borrar el atributo hidden de <section id="render" ...>.
-
-  VARIOS PARES: copiar el <figure class="cmp-par"> completo dentro de
-  .cmp-escena y agregarle hidden a todos menos el primero. Con dos o más
-  aparecen miniaturas para cambiar de mueble; con uno solo, no.
-
-  PROPORCIÓN: 4:5 en celular y 16:9 en escritorio (se cambia con
-  --cmp-ratio-movil y --cmp-ratio en .cmp-escena). Encuadre con --cmp-obj.
-  ======================================================================
--->
-<section id="render" class="cmp-seccion cmp-vertical" aria-labelledby="cmp-titulo">
-  <div class="wrap">
-    <div class="cmp-cabecera" data-reveal-group>
-      <p class="label cmp-label">Diseño 3D</p>
-      <h2 id="cmp-titulo" class="serif h2 cmp-titulo">Lo ves antes de que exista.</h2>
-      <p class="cmp-apoyo">El mismo mueble: a la izquierda el diseño, a la derecha terminado.</p>
-    </div>
-
-    <div class="cmp-escena" data-reveal="fade">
-      <figure class="cmp-par" data-nombre="Placard gris">
-        <img class="cmp-img" loading="lazy" decoding="async"
-             src="img/placard-gris-800.webp"
-             srcset="img/placard-gris-800.webp 800w, img/placard-gris-1600.webp 1600w"
-             sizes="(max-width: 900px) 100vw, 560px"
-             width="1600" height="2001"
-             alt="Placard gris con cajones, estantes y pantalonero, terminado e instalado">
-        <span class="cmp-etiqueta cmp-etiqueta-real" aria-hidden="true">Resultado real</span>
-        <div class="cmp-capa-render">
-          <img class="cmp-img" loading="lazy" decoding="async"
-               src="img/render-placard-gris-800.webp"
-               srcset="img/render-placard-gris-800.webp 800w, img/render-placard-gris-1600.webp 1600w"
-               sizes="(max-width: 900px) 100vw, 560px"
-               width="1600" height="2001"
-               alt="Render 3D del mismo placard antes de fabricarse">
-          <span class="cmp-etiqueta cmp-etiqueta-render" aria-hidden="true">Render 3D</span>
-        </div>
-        <input class="cmp-rango" type="range" min="0" max="100" step="1" value="50"
-               aria-label="Comparar render 3D y resultado real">
-        <span class="cmp-manija" aria-hidden="true">
-          <span class="cmp-linea"></span>
-          <span class="cmp-tirador">
-            <svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M6 1 1 6l5 5M16 1l5 5-5 5"/></svg>
-          </span>
-        </span>
-      </figure>
-    </div>
-
-    <div class="cmp-controles">
-      <p class="cmp-ayuda" aria-hidden="true">Deslizá para comparar</p>
-    </div>
-  </div>
 </section>
 
 <section id="nosotros" class="section-about">
