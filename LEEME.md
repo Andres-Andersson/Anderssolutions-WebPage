@@ -57,3 +57,6 @@ No se descarga si el visitante tiene "reducir movimiento" o "ahorro de datos".
 ### Pendientes
 - La foto de "Nosotros" (`cocina-isla-varillada`) repite una de la galería. Reemplazarla por una propia (taller, equipo o detalle).
 
+
+### Versión de los archivos (para que se vea el cambio enseguida)
+En `index.html`, los links a `css/*.css` y `js/*.js` llevan `?v=AAAAMMDDHHMM`. Cuando se modifique cualquiera de esos archivos, cambiar ese número (en todos los links) para que los navegadores descarguen la versión nueva en vez de usar la guardada.
