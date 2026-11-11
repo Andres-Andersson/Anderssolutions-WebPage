@@ -1,8 +1,6 @@
 # Web AndersSolutions: cómo publicarla en GitHub Pages
 
-Contenido de la carpeta:
-- `index.html`: la página completa.
-- `img/`: fotos, logo, favicon e imagen para compartir (og.jpg).
+Contenido de la carpeta: ver "Estructura de archivos" más abajo.
 - Por ahora la web se publica en la dirección provisoria de GitHub Pages. El dominio propio se agrega después (punto 2).
 
 ## 1. Subir a GitHub
@@ -22,3 +20,40 @@ Contenido de la carpeta:
 
 ## 3. Cambios futuros
 Editar `index.html` (o pedírselo a Claude) y volver a subirlo al repositorio. La web se actualiza sola.
+
+## 4. Estructura y mantenimiento
+
+### Estructura de archivos
+- `index.html`: la página completa (textos, fotos de la galería, sección de la luz y comparador 3D).
+- `css/site.css`: estilos generales (colores en `:root`, header, menú, secciones, animaciones de aparición).
+- `css/galeria.css` y `js/galeria.js`: galería de Proyectos (filtros y visor a pantalla completa).
+- `css/interactivos.css` y `js/interactivos.js`: interruptor "Encendé la luz" y comparador render 3D / foto real.
+- `js/site.js`: menú del celular, header, aparición al scroll y video de portada.
+- `img/`: fotos (`-800.webp` y `-1600.webp`), firma, favicon y og.jpg.
+- `CNAME`, `robots.txt`, `sitemap.xml`, `.nojekyll`: configuración de GitHub Pages y buscadores. No tocar.
+
+Todo es HTML, CSS y JavaScript sin librerías: no hay que compilar nada, se sube tal cual.
+
+### Agregar una foto a la galería
+1. Exportar la foto en dos tamaños .webp y subirlas a `img/`: `NOMBRE-800.webp` (800 px de ancho) y `NOMBRE-1600.webp` (1600 px). NOMBRE en minúsculas, sin espacios ni acentos.
+2. En `index.html`, buscar `GALERÍA DE PROYECTOS`: copiar un bloque `<figure class="gal-item" ...> ... </figure>`, pegarlo donde se quiera que aparezca y cambiar `data-cat`, las rutas, `width`/`height` (tamaño real de la -1600), `alt` y el epígrafe. El comentario en el HTML explica cada campo. Los filtros se arman solos.
+
+### Cargar un par apagado / encendido (sección de la luz)
+Hoy el "apagado" se simula oscureciendo la foto encendida. Para usar una foto real:
+1. Sacar la foto con las luces apagadas desde el mismo lugar y con el mismo encuadre que la encendida. Subir `img/NOMBRE-apagado-800.webp` y `img/NOMBRE-apagado-1600.webp`.
+2. En `index.html`, buscar `ENCENDÉ LA LUZ` y agregar al `<figure class="luz-pieza">` los atributos `data-off="img/NOMBRE-apagado-1600.webp"` y `data-off-srcset="img/NOMBRE-apagado-800.webp 800w, img/NOMBRE-apagado-1600.webp 1600w"`.
+Para mostrar varios muebles, el comentario en el HTML explica cómo copiar el bloque (aparecen miniaturas para elegir).
+
+### Activar el comparador 3D
+1. Exportar el render y sacar la foto real desde el mismo punto de vista y encuadre. Subir `img/render-NOMBRE-800/1600.webp` y `img/NOMBRE-800/1600.webp`.
+2. En `index.html`, buscar `LO VES EN 3D`, reemplazar NOMBRE en las rutas y completar los `alt`.
+3. Borrar la palabra `hidden` de `<section id="render" ...>`.
+
+### Activar el video de portada
+1. Subir `video/portada.webm` y `video/portada.mp4` (8 a 15 s, sin audio, menos de 3 MB cada uno).
+2. En `index.html`, buscar `VIDEO DE PORTADA` y borrar las líneas que abren (`<!--`) y cierran (`-->`) ese comentario, dejando la etiqueta `<video>`.
+No se descarga si el visitante tiene "reducir movimiento" o "ahorro de datos".
+
+### Pendientes
+- La foto de "Nosotros" (`cocina-isla-varillada`) repite una de la galería. Reemplazarla por una propia (taller, equipo o detalle).
+
