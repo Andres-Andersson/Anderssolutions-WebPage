@@ -19,6 +19,8 @@
   var link = form.querySelector('.arm-enviar');
   var vista = form.querySelector('[data-arm-texto]');
   var nombre = form.querySelector('input[name="nombre"]');
+  var otraCaja = form.querySelector('[data-arm-otra]');     // campo "¿Cuál?" de Otra zona
+  var otraZona = form.querySelector('input[name="zona_otra"]');
   var grupos = Array.prototype.slice.call(form.querySelectorAll('fieldset'));
   var mqReduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
   var anterior = {};   // última opción marcada por grupo (para poder desmarcar)
@@ -34,7 +36,9 @@
       var r = fs.querySelector('input[type="radio"]:checked');
       if (!r) return;
       if (r.getAttribute('data-objeto')) objeto = r.getAttribute('data-objeto');
-      if (r.getAttribute('data-texto')) partes.push(r.getAttribute('data-texto'));
+      if (r.name === 'zona' && r.value === 'Otra zona' && otraZona && limpiarNombre(otraZona.value)) {
+        partes.push('en ' + limpiarNombre(otraZona.value));
+      } else if (r.getAttribute('data-texto')) partes.push(r.getAttribute('data-texto'));
       if (r.getAttribute('data-frase')) frases.push(r.getAttribute('data-frase'));
     });
     var s = nom ? 'Hola, soy ' + nom + '. Quiero consultar por ' : 'Hola, quiero consultar por ';
@@ -46,6 +50,10 @@
   }
 
   function actualizar() {
+    if (otraCaja) {
+      var otra = form.querySelector('input[name="zona"][value="Otra zona"]');
+      otraCaja.hidden = !(otra && otra.checked);
+    }
     var m = mensaje();
     if (link) link.href = 'https://wa.me/' + TEL + '?text=' + encodeURIComponent(m);
     if (vista) vista.textContent = m;
@@ -57,6 +65,7 @@
 
   form.addEventListener('change', actualizar);
   if (nombre) nombre.addEventListener('input', actualizar);
+  if (otraZona) otraZona.addEventListener('input', actualizar);
 
   // Tocar de nuevo una opción ya elegida la desmarca (los radios solos no lo permiten)
   form.addEventListener('click', function (e) {

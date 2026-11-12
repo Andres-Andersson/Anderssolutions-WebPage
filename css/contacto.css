@@ -140,3 +140,8 @@
   .faq-item .faq-respuesta{transform:none}
   .arm-chip.arm-recien span{animation:none}
 }
+
+/* Campo "¿Cuál?" que aparece al elegir Otra zona */
+.arm-otra{margin-top:16px}
+.arm-otra[hidden]{display:none}
+.arm-legend--sub{display:block;margin-bottom:10px}
