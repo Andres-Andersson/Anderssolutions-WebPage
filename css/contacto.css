@@ -20,6 +20,7 @@
   transition:color .6s var(--ease);
   -webkit-tap-highlight-color:transparent;
 }
+.faq-texto{text-wrap:balance}   /* preguntas de dos líneas: corte parejo */
 .faq-pregunta::-webkit-details-marker{display:none}
 .faq-pregunta::marker{content:""}
 .faq-pregunta:hover,.faq-item[open] .faq-pregunta{color:var(--bronce-claro)}

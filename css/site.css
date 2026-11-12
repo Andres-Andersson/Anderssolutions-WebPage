@@ -5,6 +5,22 @@
    Solo se animan transform y opacity.
    ========================================================= */
 
+/* ---------- Tipografías propias (fonts/, licencia OFL) ----------
+   Solo los pesos que usa el sitio: 300 y 400, sin itálicas.
+   latin: castellano completo (á é í ó ú ñ ü ¿ ¡). latin-ext solo se descarga
+   si aparece un carácter de ese rango (p. ej. un nombre escrito en el armador).
+   Si algún día se usa font-weight:500 o itálica, hay que agregar su archivo.
+   Las dos del primer pantallazo (Cormorant 300 y Jost 300 latin) se precargan
+   en el <head> de index.html y 404.html. */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url(../fonts/cormorant-garamond-latin-300-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url(../fonts/cormorant-garamond-latin-ext-300-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/cormorant-garamond-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/cormorant-garamond-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300;font-display:swap;src:url(../fonts/jost-latin-300-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300;font-display:swap;src:url(../fonts/jost-latin-ext-300-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/jost-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/jost-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
 :root{
   --bg:#0e0d0c;
   --bg-alt:#141210;
@@ -56,7 +72,9 @@ a:hover{color:var(--bronce)}
 .h2{margin:0;font-size:52px;line-height:58px;font-weight:300}
 .h2--lg{font-size:56px;line-height:62px}
 /* Títulos y textos centrados de varias líneas: cortes parejos, sin una palabra sola al final */
-.h2,.contact-text,.contact-zones{text-wrap:balance}
+.h2,.contact-text,.contact-zones,.hero-label{text-wrap:balance}
+/* Párrafos: evita una palabra sola en la última línea (navegadores que lo soportan) */
+.hero-text,.text-sm,.text-intro,.lead,.luz-apoyo,.cmp-apoyo,.arm-ayuda,.arm-nota,.footer-text{text-wrap:pretty}
 .title-sm{margin:0 0 8px;font-size:26px;line-height:32px;font-weight:400}
 .text-sm{margin:0;font-size:15px;line-height:25px;color:var(--mudo)}
 .text-intro{margin:0;font-size:16px;line-height:26px;color:var(--mudo)}
@@ -99,6 +117,14 @@ a:hover{color:var(--bronce)}
 
 /* Panel de menú móvil a pantalla completa */
 .mobile-menu{display:none}
+/* Orden de entrada escalonada de los links (antes iba como style="--i:n" en el HTML;
+   se pasó acá para que la CSP no necesite permitir estilos inline) */
+.mobile-menu-links a:nth-child(2){--i:1}
+.mobile-menu-links a:nth-child(3){--i:2}
+.mobile-menu-links a:nth-child(4){--i:3}
+.mobile-menu-links a:nth-child(5){--i:4}
+.mobile-menu-links a:nth-child(6){--i:5}
+.mobile-menu-cta{--i:4}
 .menu-open,.menu-open body{overflow:hidden}
 
 /* ---------- Hero ---------- */
@@ -200,6 +226,16 @@ a:hover{color:var(--bronce)}
 .wa-float svg{width:28px;height:28px}
 /* Con JS aparece recién después del hero, y se oculta en Contacto (ahí ya están los botones; js/contacto.js) */
 .js .wa-float:not(.is-visible),.menu-open .wa-float,.js .wa-float.is-en-contacto{opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(0,16px,0);transition:opacity .5s var(--ease),transform .5s var(--ease),visibility 0s linear .5s}
+
+/* ---------- Página 404 (404.html) ---------- */
+.p404{display:flex;flex-direction:column;min-height:100vh;min-height:100svh;background:radial-gradient(90% 60% at 18% 0%,rgba(194,154,91,.09),rgba(194,154,91,0) 70%),var(--bg)}
+.p404-cabecera .wrap{display:flex;align-items:center;height:var(--header-h)}
+.p404-main{flex:1;display:flex;align-items:center}
+.p404-main .wrap{width:100%}
+.p404-contenido{max-width:620px;padding:48px 0 120px}
+.p404-label{margin:0 0 28px}
+.p404-titulo{text-wrap:balance}
+.p404-texto{margin:28px 0 44px;font-size:18px;line-height:30px;color:var(--texto-2)}
 
 /* =========================================================
    Sistema de aparición al scroll

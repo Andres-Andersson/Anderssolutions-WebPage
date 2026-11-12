@@ -2,28 +2,55 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<!--
+  POLÍTICA DE SEGURIDAD (CSP). Lista lo único que la página puede cargar: todo desde este
+  mismo sitio, sin scripts ni estilos inline, salvo el script chico de abajo (autorizado
+  por su hash sha256). Si se agrega un recurso externo (script, fuente, imagen, iframe,
+  video) hay que sumar su dominio a la directiva que corresponda, o el navegador lo bloquea.
+  Si se cambia UNA SOLA LETRA del script inline de abajo, hay que recalcular el hash
+  (comando en LEEME.md, sección "Seguridad"). La misma política está en 404.html.
+
+  CLOUDFLARE WEB ANALYTICS (para cuando se active): reemplazar en la política
+    script-src 'self' 'sha256-…'   por   script-src 'self' 'sha256-…' https://static.cloudflareinsights.com
+    connect-src 'self'             por   connect-src 'self' https://cloudflareinsights.com
+  (el hash queda igual). Hacerlo también en 404.html.
+-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-0RA0egaWybkT4+qONxDBtcZFazBDYMBcYn9u1NBERXA='; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AndersSolutions — Muebles a medida de alta gama</title>
 <meta name="description" content="Muebles de cocina, vestidores, placares y cristaleros a medida, de alta gama. Tecnología CNC, luz integrada y diseño en 3D. CABA, Canning, Ezeiza y zona sur.">
 <meta name="theme-color" content="#0e0d0c">
-<link rel="icon" type="image/png" href="img/favicon.png">
-<link rel="canonical" href="https://anderssolutions.com.ar/">
-<link rel="preload" as="image" href="img/cristalero-vinoteca-calido-1600.webp" type="image/webp" media="(min-width: 761px)">
-<link rel="preload" as="image" href="img/cristalero-vinoteca-calido-800.webp" type="image/webp" media="(max-width: 760px)">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="canonical" href="https://anderssolutions.com.ar/">
+<link rel="preload" as="image" href="img/cristalero-vinoteca-calido-1600.webp" type="image/webp" media="(min-width: 761px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/cristalero-vinoteca-calido-800.webp" type="image/webp" media="(max-width: 760px)" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" href="fonts/cormorant-garamond-latin-300-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/jost-latin-300-normal.woff2" crossorigin>
 <meta property="og:type" content="website">
 <meta property="og:title" content="AndersSolutions — Diseñado a medida. Iluminado al detalle.">
 <meta property="og:description" content="Muebles de cocina, vestidores, placares y cristaleros a medida, de alta gama. Tecnología CNC, luz integrada y diseño en 3D. CABA, Canning, Ezeiza y zona sur.">
 <meta property="og:image" content="https://anderssolutions.com.ar/img/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cristalero de perfil negro con vinoteca integrada, estantes de vidrio y luz cálida">
 <meta property="og:url" content="https://anderssolutions.com.ar/">
 <meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AndersSolutions — Diseñado a medida. Iluminado al detalle.">
+<meta name="twitter:description" content="Muebles de cocina, vestidores, placares y cristaleros a medida, de alta gama. Tecnología CNC, luz integrada y diseño en 3D. CABA, Canning, Ezeiza y zona sur.">
+<meta name="twitter:image" content="https://anderssolutions.com.ar/img/og.jpg">
+<meta name="twitter:image:alt" content="Cristalero de perfil negro con vinoteca integrada, estantes de vidrio y luz cálida">
+<!-- Pone la clase .js antes del primer pintado (evita parpadeo). Su hash está en la CSP de arriba. -->
 <script>(function(d){d.classList.add('js');setTimeout(function(){if(!window.AS){d.classList.remove('js')}},4000)})(document.documentElement)</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=202611120022">
-<link rel="stylesheet" href="css/galeria.css?v=202611120022">
-<link rel="stylesheet" href="css/interactivos.css?v=202611120022">
-<link rel="stylesheet" href="css/contacto.css?v=202611120022">
+<link rel="stylesheet" href="css/site.css?v=202611121103">
+<link rel="stylesheet" href="css/galeria.css?v=202611121103">
+<link rel="stylesheet" href="css/interactivos.css?v=202611121103">
+<link rel="stylesheet" href="css/contacto.css?v=202611121103">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HomeAndConstructionBusiness", "name": "AndersSolutions", "description": "Muebles de cocina, vestidores, placares y cristaleros a medida, de alta gama, con tecnología CNC y luz integrada.", "url": "https://anderssolutions.com.ar/", "logo": "https://anderssolutions.com.ar/img/favicon.png", "image": "https://anderssolutions.com.ar/img/og.jpg", "telephone": "+5491121872121", "address": {"@type": "PostalAddress", "addressLocality": "Villa Madero", "addressRegion": "Buenos Aires", "addressCountry": "AR"}, "areaServed": ["Ciudad Autónoma de Buenos Aires", "Canning", "Ezeiza", "Villa Madero"], "sameAs": ["https://instagram.com/anderssolutions"]}</script>
 </head>
 <body>
@@ -47,12 +74,12 @@
 
 <nav class="mobile-menu" id="menu-movil" aria-label="Menú">
 <div class="mobile-menu-links">
-<a href="#proceso" style="--i:0">Cómo trabajamos</a>
-<a href="#proyectos" style="--i:1">Proyectos</a>
-<a href="#lineas" style="--i:2">Líneas</a>
-<a href="#nosotros" style="--i:3">Nosotros</a>
+<a href="#proceso">Cómo trabajamos</a>
+<a href="#proyectos">Proyectos</a>
+<a href="#lineas">Líneas</a>
+<a href="#nosotros">Nosotros</a>
 </div>
-<a class="btn btn-pri mobile-menu-cta" style="--i:4" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+<a class="btn btn-pri mobile-menu-cta" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
 </nav>
 
 <main id="contenido">
@@ -84,7 +111,7 @@
 <div class="wrap hero-wrap">
 <div class="hero-content">
 <p class="label hero-label">Cocinas · Vestidores · Placares · Cristaleros</p>
-<h1 class="serif h1 hero-title"><span class="hero-line">Diseñado a medida.</span><br><span class="hero-line">Iluminado al detalle.</span></h1>
+<h1 class="serif h1 hero-title"><span class="hero-line">Diseñado a&nbsp;medida.</span><br><span class="hero-line">Iluminado al&nbsp;detalle.</span></h1>
 <p class="hero-text">Muebles de alta gama con tecnología CNC y luz integrada. Lo ves en 3D antes de que exista.</p>
 <div class="btn-row hero-actions">
 <a class="btn btn-pri" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
@@ -131,7 +158,9 @@
 
   HOY (sin fotos apagadas reales): el estado apagado se SIMULA con la misma
   foto encendida oscurecida por CSS. Para centrar el oscurecimiento y el
-  brillo sobre el mueble se usa --luz-foco (posición x y, en %).
+  brillo sobre el mueble se usa --luz-foco (posición x y, en %), definido en
+  css/interactivos.css con una clase por mueble (ej.: .luz-pieza--vestidor-negro).
+  No usar style="" en el HTML: la política de seguridad (CSP) lo bloquea.
 
   CUANDO TENGAN EL PAR REAL (misma toma, mismo encuadre, luces apagadas):
   1. Guardar las fotos en img/, por ejemplo:
@@ -151,7 +180,7 @@
   <section> la foto es 4:5 (ideal para vestidores y placares); sin esa clase
   es 4:3 (cocinas, cristaleros horizontales). Se puede forzar con
   --luz-ratio-movil y --luz-ratio en .luz-marco. Encuadre de cada foto con
-  --luz-pos (object-position).
+  --luz-pos (object-position), en la misma clase del mueble en css/interactivos.css.
   ======================================================================
 -->
 <section id="luz" class="luz-seccion luz-vertical" aria-labelledby="luz-titulo">
@@ -164,10 +193,10 @@
 
     <div class="luz-escena" data-reveal="fade">
       <div class="luz-marco">
-        <figure class="luz-pieza" data-nombre="Vestidor de perfil negro" style="--luz-foco: 45% 50%; --luz-pos: 50% 55%;">
+        <figure class="luz-pieza luz-pieza--vestidor-negro" data-nombre="Vestidor de perfil negro">
           <img class="luz-img-on" loading="lazy" decoding="async"
                src="img/vestidor-perfil-negro-calido-800.webp"
-               srcset="img/vestidor-perfil-negro-calido-800.webp 800w, img/vestidor-perfil-negro-calido-1600.webp 1600w"
+               srcset="img/vestidor-perfil-negro-calido-800.webp 800w, img/vestidor-perfil-negro-calido-1600.webp 1200w"
                sizes="(max-width: 899px) 100vw, 560px"
                width="1200" height="1600"
                alt="Vestidor con puertas de perfil negro y vidrio, con luz LED cálida en estantes y laterales">
@@ -307,7 +336,9 @@
        - data-cat: la categoría, tal cual se va a ver en el filtro
          (Cocinas, Vestidores, Placares o Cristaleros). Si escribís una categoría
          nueva, el botón de filtro aparece solo.
-       - NOMBRE en src y en srcset (las dos veces).
+       - NOMBRE en src y en srcset (las dos veces). El número con "w" de cada archivo
+         del srcset tiene que ser su ancho REAL en píxeles (si la -1600 mide 900 de
+         ancho, va "900w"); así el navegador elige bien qué versión bajar.
        - width y height: el tamaño real en píxeles de la versión -1600
          (por ejemplo 1600 y 1200 si es horizontal, 1200 y 1600 si es vertical).
        - alt: una descripción de lo que se ve en la foto (para buscadores y lectores de pantalla).
@@ -323,17 +354,17 @@
 </figure>
 
 <figure class="gal-item" data-cat="Cristaleros">
-<img src="img/cristalero-bar-negro-800.webp" srcset="img/cristalero-bar-negro-800.webp 800w, img/cristalero-bar-negro-1600.webp 1600w" sizes="(max-width: 1000px) 50vw, 400px" width="900" height="1600" loading="lazy" decoding="async" alt="Cristalero bar negro con iluminación lateral">
+<img src="img/cristalero-bar-negro-800.webp" srcset="img/cristalero-bar-negro-800.webp 800w, img/cristalero-bar-negro-1600.webp 900w" sizes="(max-width: 1000px) 50vw, 400px" width="900" height="1600" loading="lazy" decoding="async" alt="Cristalero bar negro con iluminación lateral">
 <figcaption><span class="gal-cat">Cristaleros</span> <span class="gal-desc">Bar negro con iluminación lateral</span></figcaption>
 </figure>
 
 <figure class="gal-item" data-cat="Vestidores">
-<img src="img/vestidor-perfil-negro-calido-800.webp" srcset="img/vestidor-perfil-negro-calido-800.webp 800w, img/vestidor-perfil-negro-calido-1600.webp 1600w" sizes="(max-width: 1000px) 50vw, 400px" width="1200" height="1600" loading="lazy" decoding="async" alt="Vestidor con puertas de perfil negro, vidrio y luz LED cálida">
+<img src="img/vestidor-perfil-negro-calido-800.webp" srcset="img/vestidor-perfil-negro-calido-800.webp 800w, img/vestidor-perfil-negro-calido-1600.webp 1200w" sizes="(max-width: 1000px) 50vw, 400px" width="1200" height="1600" loading="lazy" decoding="async" alt="Vestidor con puertas de perfil negro, vidrio y luz LED cálida">
 <figcaption><span class="gal-cat">Vestidores</span> <span class="gal-desc">Perfil negro, vidrio y luz LED cálida</span></figcaption>
 </figure>
 
 <figure class="gal-item" data-cat="Vestidores">
-<img src="img/vestidor-gris-luz-perimetral-800.webp" srcset="img/vestidor-gris-luz-perimetral-800.webp 800w, img/vestidor-gris-luz-perimetral-1600.webp 1600w" sizes="(max-width: 1000px) 50vw, 400px" width="720" height="1280" loading="lazy" decoding="async" alt="Vestidor en tono gris con iluminación LED perimetral y percheros rebatibles">
+<img src="img/vestidor-gris-luz-perimetral-800.webp" srcset="img/vestidor-gris-luz-perimetral-800.webp 720w" sizes="(max-width: 1000px) 50vw, 400px" width="720" height="1280" loading="lazy" decoding="async" alt="Vestidor en tono gris con iluminación LED perimetral y percheros rebatibles">
 <figcaption><span class="gal-cat">Vestidores</span> <span class="gal-desc">Gris con luz perimetral y percheros rebatibles</span></figcaption>
 </figure>
 
@@ -543,6 +574,15 @@
 </div>
 </fieldset>
 
+<fieldset class="arm-grupo">
+<legend class="label arm-legend">¿Tenés medidas o plano?</legend>
+<div class="arm-chips">
+<label class="arm-chip"><input type="radio" name="medidas" value="Tengo medidas" data-frase="Tengo las medidas."><span>Tengo medidas</span></label>
+<label class="arm-chip"><input type="radio" name="medidas" value="Tengo plano" data-frase="Tengo un plano."><span>Tengo plano</span></label>
+<label class="arm-chip"><input type="radio" name="medidas" value="Todavía no" data-frase="Todavía no tengo medidas."><span>Todavía no</span></label>
+</div>
+</fieldset>
+
 <div class="arm-grupo arm-campo">
 <label class="label arm-legend" for="arm-nombre">Tu nombre (opcional)</label>
 <div class="arm-control">
@@ -577,10 +617,12 @@
 </footer>
 
 </div>
+<aside>
 <a class="wa-float" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.6a8.2 8.2 0 0 1-12.1 7.2L4 20l1.3-3.7A8.2 8.2 0 1 1 20 11.6z"/><path d="M9.2 8.6c.2-.4.5-.4.8-.4h.5c.2 0 .4.1.5.4l.6 1.5c.1.2 0 .5-.1.6l-.5.6c.6 1.1 1.4 1.9 2.5 2.5l.6-.5c.2-.2.4-.2.6-.1l1.5.6c.3.1.4.3.4.5v.5c0 .3-.1.6-.4.8-.6.4-1.4.5-2.2.2a8.6 8.6 0 0 1-4.7-4.7c-.3-.8-.2-1.6.2-2.3z"/></svg></a>
-<script src="js/site.js?v=202611120022" defer></script>
-<script src="js/galeria.js?v=202611120022" defer></script>
-<script src="js/interactivos.js?v=202611120022" defer></script>
-<script src="js/contacto.js?v=202611120022" defer></script>
+</aside>
+<script src="js/site.js?v=202611121103" defer></script>
+<script src="js/galeria.js?v=202611121103" defer></script>
+<script src="js/interactivos.js?v=202611121103" defer></script>
+<script src="js/contacto.js?v=202611121103" defer></script>
 </body>
 </html>
