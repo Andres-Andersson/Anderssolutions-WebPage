@@ -28,6 +28,7 @@ Editar `index.html` (o pedírselo a Claude) y volver a subirlo al repositorio. L
 - `css/site.css`: estilos generales (colores en `:root`, header, menú, secciones, animaciones de aparición).
 - `css/galeria.css` y `js/galeria.js`: galería de Proyectos (filtros y visor a pantalla completa).
 - `css/interactivos.css` y `js/interactivos.js`: interruptor "Encendé la luz" y comparador render 3D / foto real.
+- `css/contacto.css` y `js/contacto.js`: preguntas frecuentes y armador "Contanos tu proyecto" (mensaje de WhatsApp).
 - `js/site.js`: menú del celular, header, aparición al scroll y video de portada.
 - `img/`: fotos (`-800.webp` y `-1600.webp`), firma, favicon y og.jpg.
 - `CNAME`, `robots.txt`, `sitemap.xml`, `.nojekyll`: configuración de GitHub Pages y buscadores. No tocar.
@@ -53,6 +54,15 @@ Para mostrar varios muebles, el comentario en el HTML explica cómo copiar el bl
 1. Subir `video/portada.webm` y `video/portada.mp4` (8 a 15 s, sin audio, menos de 3 MB cada uno).
 2. En `index.html`, buscar `VIDEO DE PORTADA` y borrar las líneas que abren (`<!--`) y cierran (`-->`) ese comentario, dejando la etiqueta `<video>`.
 No se descarga si el visitante tiene "reducir movimiento" o "ahorro de datos".
+
+### Armador "Contanos tu proyecto" (sección Contacto)
+Arma un mensaje de WhatsApp con lo que elige el visitante y abre `wa.me` con el texto listo. No guarda ni envía datos a ningún servidor. Sin JavaScript no se ve y queda el botón directo de WhatsApp.
+- **Cambiar una opción:** en `index.html`, buscar `CONTANOS TU PROYECTO`. Cada opción es un `<label class="arm-chip">`: el texto del `<span>` es lo que se ve, y el atributo `data-objeto`, `data-texto` o `data-frase` es lo que va al mensaje (el comentario del HTML explica cada uno). Para agregar o sacar una, copiar o borrar el `<label>` completo.
+- **Cambiar el número:** atributo `data-telefono` del `<form data-armador>` (solo dígitos, con 549). Si cambia el número, cambiarlo también en todos los links `wa.me/` de la página.
+- Los botones de las tarjetas de Líneas tienen `data-linea="Elite"` (o Premium/Classic): llevan a Contacto y dejan esa línea elegida. El valor tiene que coincidir con el `value` de la opción.
+
+### Preguntas frecuentes
+En `index.html`, buscar `PREGUNTAS FRECUENTES`. Cada pregunta es un `<details class="faq-item">`. **El texto está dos veces:** en el HTML visible y en el bloque `<script type="application/ld+json">` del final de esa sección (lo leen Google y otros buscadores). Al cambiar, agregar o borrar una pregunta, hacerlo en los dos lugares con el mismo texto.
 
 ### Pendientes
 - La foto de "Nosotros" (`cocina-isla-varillada`) repite una de la galería. Reemplazarla por una propia (taller, equipo o detalle).

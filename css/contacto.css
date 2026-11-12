@@ -1,0 +1,142 @@
+/* =========================================================
+   AndersSolutions — Preguntas frecuentes y Contacto
+   - Preguntas frecuentes (prefijo faq-): <details>/<summary>, sin JS.
+   - "Contanos tu proyecto" (prefijo arm-): armador de mensaje de WhatsApp
+     (comportamiento en js/contacto.js).
+   Usa las variables de :root (css/site.css).
+   ========================================================= */
+
+/* ---------- Preguntas frecuentes ---------- */
+.section-faq{padding:120px 0;background:var(--bg-alt);border-top:1px solid var(--linea)}
+.faq-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:64px;align-items:start}
+.faq-intro .h2{max-width:420px}
+.faq-lista{border-bottom:1px solid var(--linea)}
+.faq-item{border-top:1px solid var(--linea)}
+.faq-pregunta{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  min-height:44px;padding:22px 0;
+  list-style:none;cursor:pointer;
+  font-family:var(--serif);font-size:24px;line-height:30px;font-weight:400;color:var(--texto);
+  transition:color .6s var(--ease);
+  -webkit-tap-highlight-color:transparent;
+}
+.faq-pregunta::-webkit-details-marker{display:none}
+.faq-pregunta::marker{content:""}
+.faq-pregunta:hover,.faq-item[open] .faq-pregunta{color:var(--bronce-claro)}
+.faq-pregunta:focus{outline:none}
+.faq-pregunta:focus-visible{outline:2px solid var(--bronce);outline-offset:4px}
+
+/* Ícono: una cruz de filetes finos; al abrir, la vertical gira y queda un guion */
+.faq-icono{position:relative;flex:none;width:14px;height:14px}
+.faq-icono::before,.faq-icono::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;margin-top:-.5px;background:var(--bronce);transition:transform .6s var(--ease)}
+.faq-icono::after{transform:rotate(90deg)}
+.faq-item[open] .faq-icono::after{transform:rotate(0)}
+
+.faq-respuesta{padding:0 56px 28px 0}
+.faq-respuesta p{margin:0;font-size:16px;line-height:27px;color:var(--texto-2);max-width:560px}
+.faq-respuesta a{color:var(--bronce);border-bottom:1px solid rgba(194,154,91,.45);transition:border-color .6s var(--ease),color .6s var(--ease)}
+.faq-respuesta a:hover{color:var(--bronce-claro);border-bottom-color:var(--bronce-claro)}
+
+/* Apertura suave donde el navegador lo permite (Chrome/Edge 131+). En el resto abre al instante. */
+@supports (interpolate-size:allow-keywords){
+  .faq-item{interpolate-size:allow-keywords}
+  .faq-item::details-content{block-size:0;overflow:hidden;transition:block-size .7s var(--ease),content-visibility .7s var(--ease) allow-discrete}
+  .faq-item[open]::details-content{block-size:auto}
+}
+.faq-item .faq-respuesta{opacity:0;transform:translate3d(0,-6px,0);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.faq-item[open] .faq-respuesta{opacity:1;transform:none}
+
+/* ---------- Contacto ---------- */
+/* .section-contact (fondo negro, centrado) y sus textos están en site.css */
+.arm{display:none}
+.js .arm{display:block}
+
+.arm{
+  max-width:880px;margin:0 auto;box-sizing:border-box;
+  padding:48px 56px 44px;
+  border:1px solid var(--linea);background:var(--bg);
+  text-align:left;
+}
+.arm-cabecera{margin:0 0 28px}
+.arm-titulo{margin:0 0 6px;font-size:32px;line-height:38px;font-weight:400;color:var(--texto)}
+.arm-ayuda{margin:0;font-size:15px;line-height:24px;color:var(--mudo)}
+
+.arm-grupo{margin:0;padding:22px 0;border:0;border-top:1px solid var(--linea);min-width:0}
+/* Leyenda a la izquierda y opciones a la derecha (en celular, una arriba de la otra) */
+.arm-legend{float:left;width:200px;margin:0;padding:14px 16px 0 0;box-sizing:border-box;color:var(--texto-2)}
+.arm-chips,.arm-control{display:flow-root}
+.arm-chips{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Chip: radio real, invisible pero enfocable, sobre todo el chip */
+.arm-chip{position:relative;display:inline-flex;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.arm-chip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.arm-chip span{
+  display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;
+  padding:0 18px;border:1px solid var(--linea);border-radius:0;
+  font-size:15px;line-height:20px;font-weight:300;letter-spacing:.02em;color:var(--texto-2);
+  transition:border-color .5s var(--ease),background-color .5s var(--ease),color .5s var(--ease);
+}
+@media (hover:hover){
+  .arm-chip:hover span{border-color:var(--mudo);color:var(--texto)}
+}
+.arm-chip input:checked+span{border-color:var(--bronce);background:rgba(194,154,91,.14);color:var(--bronce-claro)}
+.arm-chip input:focus-visible+span{outline:2px solid var(--bronce);outline-offset:3px}
+/* Destello breve cuando se preselecciona desde una tarjeta de Líneas */
+.arm-chip.arm-recien span{animation:arm-recien 1.8s var(--ease)}
+@keyframes arm-recien{from{background:rgba(194,154,91,.4)}to{background:rgba(194,154,91,.14)}}
+
+.arm-input{
+  display:block;width:100%;max-width:360px;min-height:48px;box-sizing:border-box;
+  padding:10px 14px;margin:0;border:1px solid var(--linea);border-radius:0;
+  background:transparent;color:var(--texto);
+  font-family:var(--sans);font-size:16px;line-height:24px;font-weight:300;
+  transition:border-color .5s var(--ease);
+}
+.arm-input:hover{border-color:var(--mudo)}
+.arm-input:focus{outline:none;border-color:var(--bronce)}
+.arm-input:focus-visible{outline:2px solid var(--bronce);outline-offset:3px}
+
+.arm-envio{padding-top:32px;border-top:1px solid var(--linea)}
+.arm-enviar{text-align:center}
+.arm-vista{margin:24px 0 0;padding:2px 0 2px 18px;border-left:1px solid var(--bronce)}
+.arm-vista-label{display:block;margin:0 0 6px;font-size:11px;line-height:14px;letter-spacing:.28em;text-transform:uppercase;color:var(--mudo)}
+.arm-vista-texto{display:block;font-family:var(--serif);font-size:20px;line-height:28px;font-weight:400;color:var(--texto-2);overflow-wrap:anywhere}
+.arm-nota{margin:18px 0 0;font-size:13px;line-height:20px;color:var(--mudo)}
+
+/* Alternativa directa (WhatsApp sin armar + Instagram) */
+.contacto-alt{margin-top:56px}
+.contacto-alt-texto{display:none;margin:0 0 20px;font-size:12px;line-height:16px;letter-spacing:.28em;text-transform:uppercase;color:var(--mudo)}
+.js .contacto-alt-texto{display:block}
+/* Con el armador visible, el botón directo pasa a segundo plano */
+.js .contacto-directo{background:transparent;border-color:var(--mudo);color:var(--texto)}
+.js .contacto-directo:hover{background:transparent;border-color:var(--texto);color:var(--texto)}
+
+/* ---------- Tablet ---------- */
+@media (max-width:900px){
+  .faq-grid{grid-template-columns:minmax(0,1fr);gap:40px}
+  .arm-legend{width:160px}
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width:760px){
+  .section-faq{padding:88px 0}
+  .faq-pregunta{font-size:21px;line-height:27px;padding:20px 0;gap:20px}
+  .faq-respuesta{padding:0 32px 24px 0}
+
+  .arm{padding:32px 20px 28px;margin:0 -20px;border-left:0;border-right:0}
+  .arm-titulo{font-size:28px;line-height:34px}
+  .arm-legend{width:100%;padding:0 0 14px}   /* sigue flotada: así la leyenda no corta el filete del grupo */
+  .arm-grupo{padding:20px 0 22px}
+  .arm-chips{gap:8px}
+  .arm-chips,.arm-control{clear:both}
+  .arm-chip span{padding:0 16px}
+  .arm-input{max-width:none}
+  .arm-enviar{display:block}
+  .arm-vista-texto{font-size:19px;line-height:26px}
+  .contacto-alt{margin-top:48px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .faq-item .faq-respuesta{transform:none}
+  .arm-chip.arm-recien span{animation:none}
+}

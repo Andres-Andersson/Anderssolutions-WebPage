@@ -55,6 +55,8 @@ a:hover{color:var(--bronce)}
 .h1{margin:0;font-size:76px;line-height:80px;font-weight:300;letter-spacing:.005em}
 .h2{margin:0;font-size:52px;line-height:58px;font-weight:300}
 .h2--lg{font-size:56px;line-height:62px}
+/* Títulos y textos centrados de varias líneas: cortes parejos, sin una palabra sola al final */
+.h2,.contact-text,.contact-zones{text-wrap:balance}
 .title-sm{margin:0 0 8px;font-size:26px;line-height:32px;font-weight:400}
 .text-sm{margin:0;font-size:15px;line-height:25px;color:var(--mudo)}
 .text-intro{margin:0;font-size:16px;line-height:26px;color:var(--mudo)}
@@ -196,8 +198,8 @@ a:hover{color:var(--bronce)}
 .wa-float{display:none;position:fixed;right:18px;bottom:18px;z-index:20;width:58px;height:58px;border-radius:50%;background:var(--bronce);color:var(--bg);align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.45);transition:opacity .7s var(--ease),transform .7s var(--ease),visibility 0s linear 0s}
 .wa-float:hover{color:var(--bg);background:var(--bronce-claro)}
 .wa-float svg{width:28px;height:28px}
-/* Con JS aparece recién después del hero */
-.js .wa-float:not(.is-visible),.menu-open .wa-float{opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(0,16px,0);transition:opacity .5s var(--ease),transform .5s var(--ease),visibility 0s linear .5s}
+/* Con JS aparece recién después del hero, y se oculta en Contacto (ahí ya están los botones; js/contacto.js) */
+.js .wa-float:not(.is-visible),.menu-open .wa-float,.js .wa-float.is-en-contacto{opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(0,16px,0);transition:opacity .5s var(--ease),transform .5s var(--ease),visibility 0s linear .5s}
 
 /* =========================================================
    Sistema de aparición al scroll
@@ -294,7 +296,7 @@ a:hover{color:var(--bronce)}
   /* Header compacto para que entren firma + WhatsApp + menú */
   .header-bar{gap:12px}
   .wm--header{width:140px;height:66px}
-  .btn-header{padding:11px 14px;letter-spacing:.2em}
+  .btn-header{display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;padding:0 14px;letter-spacing:.2em}
   .js .mobile-menu{padding-left:20px;padding-right:20px}
 }
 
@@ -303,5 +305,5 @@ a:hover{color:var(--bronce)}
 @media (max-width:374px){
   .header-bar{gap:8px}
   .wm--header{width:118px;height:56px}
-  .btn-header{padding:10px 12px;letter-spacing:.16em}
+  .btn-header{padding:0 12px;letter-spacing:.16em}
 }

@@ -20,9 +20,10 @@
 <script>(function(d){d.classList.add('js');setTimeout(function(){if(!window.AS){d.classList.remove('js')}},4000)})(document.documentElement)</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=202611112343">
-<link rel="stylesheet" href="css/galeria.css?v=202611112343">
-<link rel="stylesheet" href="css/interactivos.css?v=202611112343">
+<link rel="stylesheet" href="css/site.css?v=202611120016">
+<link rel="stylesheet" href="css/galeria.css?v=202611120016">
+<link rel="stylesheet" href="css/interactivos.css?v=202611120016">
+<link rel="stylesheet" href="css/contacto.css?v=202611120016">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HomeAndConstructionBusiness", "name": "AndersSolutions", "description": "Muebles de cocina, vestidores, placares y cristaleros a medida, de alta gama, con tecnología CNC y luz integrada.", "url": "https://anderssolutions.com.ar/", "logo": "https://anderssolutions.com.ar/img/favicon.png", "image": "https://anderssolutions.com.ar/img/og.jpg", "telephone": "+5491121872121", "address": {"@type": "PostalAddress", "addressLocality": "Villa Madero", "addressRegion": "Buenos Aires", "addressCountry": "AR"}, "areaServed": ["Ciudad Autónoma de Buenos Aires", "Canning", "Ezeiza", "Villa Madero"], "sameAs": ["https://instagram.com/anderssolutions"]}</script>
 </head>
 <body>
@@ -368,7 +369,7 @@
 <li>Herrajes de línea</li>
 <li>Diseño a medida</li>
 </ul>
-<a class="btn btn-block" href="#contacto">Consultar</a>
+<a class="btn btn-block" href="#contacto" data-linea="Classic">Consultar</a>
 </div>
 <div class="tier tier--premium">
 <p class="label tier-tag">Recomendada</p>
@@ -379,7 +380,7 @@
 <li>Herrajes de buena calidad con cierre suave</li>
 <li>Iluminación LED bajo alacena</li>
 </ul>
-<a class="btn btn-block" href="#contacto">Consultar</a>
+<a class="btn btn-block" href="#contacto" data-linea="Premium">Consultar</a>
 </div>
 <div class="tier tier--elite">
 <p class="label tier-tag">Experiencia completa</p>
@@ -391,7 +392,7 @@
 <li>Luz integrada en cada puerta y cajón</li>
 <li>Cristaleros de aluminio negro y vidrio fumé</li>
 </ul>
-<a class="btn btn-pri btn-block" href="#contacto">Quiero una Elite</a>
+<a class="btn btn-pri btn-block" href="#contacto" data-linea="Elite">Quiero una Elite</a>
 </div>
 </div>
 </div>
@@ -416,15 +417,147 @@
 </div>
 </section>
 
+<!--
+  ======================================================================
+  PREGUNTAS FRECUENTES
+  Cada pregunta es un <details class="faq-item">. Para cambiar un texto hay que
+  editarlo en DOS lugares: acá abajo y en el bloque <script type="application/ld+json">
+  que está al final de esta sección (lo leen los buscadores). El texto tiene que ser
+  el mismo en los dos.
+  ======================================================================
+-->
+<section id="preguntas" class="section-faq" aria-labelledby="faq-titulo">
+<div class="wrap faq-grid">
+<div class="faq-intro" data-reveal-group>
+<p class="label label--section">Preguntas frecuentes</p>
+<h2 id="faq-titulo" class="serif h2">Antes de empezar.</h2>
+</div>
+<div class="faq-lista" data-reveal-group>
+<details class="faq-item">
+<summary class="faq-pregunta"><span class="faq-texto">¿En qué zonas trabajan?</span><span class="faq-icono" aria-hidden="true"></span></summary>
+<div class="faq-respuesta"><p>Trabajamos en CABA, Canning, Ezeiza y alrededores. El taller está en Villa Madero.</p></div>
+</details>
+<details class="faq-item">
+<summary class="faq-pregunta"><span class="faq-texto">¿Puedo ver el mueble antes de que lo fabriquen?</span><span class="faq-icono" aria-hidden="true"></span></summary>
+<div class="faq-respuesta"><p>Sí. Cada proyecto se diseña en 3D y lo ves con materiales y luz antes de fabricarlo.</p></div>
+</details>
+<details class="faq-item">
+<summary class="faq-pregunta"><span class="faq-texto">¿Cuánto cuesta un mueble?</span><span class="faq-icono" aria-hidden="true"></span></summary>
+<div class="faq-respuesta"><p>Cada mueble es a medida, por eso no hay precios de lista. El presupuesto se arma según el espacio y la línea, y se pide por WhatsApp.</p></div>
+</details>
+<details class="faq-item">
+<summary class="faq-pregunta"><span class="faq-texto">¿Qué cambia entre Classic, Premium y Elite?</span><span class="faq-icono" aria-hidden="true"></span></summary>
+<div class="faq-respuesta"><p>Cambian los materiales, los herrajes y la iluminación. Elite es la experiencia completa. El detalle te lo mostramos en persona.</p></div>
+</details>
+<details class="faq-item">
+<summary class="faq-pregunta"><span class="faq-texto">¿Lo instalan ustedes?</span><span class="faq-icono" aria-hidden="true"></span></summary>
+<div class="faq-respuesta"><p>Sí. Nuestro equipo lo coloca y lo deja funcionando.</p></div>
+</details>
+<details class="faq-item">
+<summary class="faq-pregunta"><span class="faq-texto">¿Cómo empiezo?</span><span class="faq-icono" aria-hidden="true"></span></summary>
+<div class="faq-respuesta"><p>Escribinos por WhatsApp y contanos cómo es tu espacio. Podés <a href="#contacto">armar el mensaje acá</a>.</p></div>
+</details>
+</div>
+</div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "¿En qué zonas trabajan?", "acceptedAnswer": {"@type": "Answer", "text": "Trabajamos en CABA, Canning, Ezeiza y alrededores. El taller está en Villa Madero."}},
+{"@type": "Question", "name": "¿Puedo ver el mueble antes de que lo fabriquen?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Cada proyecto se diseña en 3D y lo ves con materiales y luz antes de fabricarlo."}},
+{"@type": "Question", "name": "¿Cuánto cuesta un mueble?", "acceptedAnswer": {"@type": "Answer", "text": "Cada mueble es a medida, por eso no hay precios de lista. El presupuesto se arma según el espacio y la línea, y se pide por WhatsApp."}},
+{"@type": "Question", "name": "¿Qué cambia entre Classic, Premium y Elite?", "acceptedAnswer": {"@type": "Answer", "text": "Cambian los materiales, los herrajes y la iluminación. Elite es la experiencia completa. El detalle te lo mostramos en persona."}},
+{"@type": "Question", "name": "¿Lo instalan ustedes?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Nuestro equipo lo coloca y lo deja funcionando."}},
+{"@type": "Question", "name": "¿Cómo empiezo?", "acceptedAnswer": {"@type": "Answer", "text": "Escribinos por WhatsApp y contanos cómo es tu espacio. Podés armar el mensaje acá."}}
+]}</script>
+</section>
+
+<!--
+  ======================================================================
+  CONTACTO + "CONTANOS TU PROYECTO" (armador de mensaje de WhatsApp)
+  - Cada opción es un <input type="radio"> dentro de un <label class="arm-chip">.
+    Lo que se ve es el texto del <span>; lo que va al mensaje está en el atributo:
+      data-objeto  (¿Qué mueble?)  "Quiero consultar por ___"
+      data-texto   se suma a esa misma frase, separado por coma (", línea Elite", ", en Canning")
+      data-frase   se agrega como frase aparte al final ("Para cuándo: en unos meses.")
+    Para agregar o sacar una opción: copiar o borrar un <label class="arm-chip"> completo.
+  - El número de WhatsApp está en data-telefono del <form> (solo dígitos, con 549).
+  - No se guarda ni se envía nada a ningún servidor: solo arma el link de wa.me.
+  - Sin JavaScript el armador no se muestra y queda el botón directo de abajo.
+  ======================================================================
+-->
 <section id="contacto" class="section-contact">
-<div class="wrap" data-reveal-group>
+<div class="wrap">
+<div class="contact-intro" data-reveal-group>
 <p class="label contact-label">Contacto</p>
 <h2 class="serif h2 h2--lg">Contanos qué tenés en mente.</h2>
 <p class="contact-text">Te respondemos por WhatsApp y coordinamos para mostrarte opciones.</p>
-<p class="label contact-zones">CABA · Canning · Ezeiza · Zona sur y alrededores</p>
+<p class="label contact-zones">CABA · Canning · Ezeiza · Zona&nbsp;sur y alrededores</p>
+</div>
+
+<form class="arm" data-armador data-telefono="5491121872121" aria-labelledby="arm-titulo" data-reveal="fade">
+<div class="arm-cabecera">
+<h3 id="arm-titulo" class="serif arm-titulo">Contanos tu proyecto</h3>
+<p class="arm-ayuda">Elegí lo que quieras. El mensaje se arma solo.</p>
+</div>
+
+<fieldset class="arm-grupo">
+<legend class="label arm-legend">¿Qué mueble?</legend>
+<div class="arm-chips">
+<label class="arm-chip"><input type="radio" name="mueble" value="Cocina" data-objeto="una cocina"><span>Cocina</span></label>
+<label class="arm-chip"><input type="radio" name="mueble" value="Vestidor" data-objeto="un vestidor"><span>Vestidor</span></label>
+<label class="arm-chip"><input type="radio" name="mueble" value="Placard" data-objeto="un placard"><span>Placard</span></label>
+<label class="arm-chip"><input type="radio" name="mueble" value="Cristalero" data-objeto="un cristalero"><span>Cristalero</span></label>
+<label class="arm-chip"><input type="radio" name="mueble" value="Otro" data-objeto="otro mueble a medida"><span>Otro</span></label>
+</div>
+</fieldset>
+
+<fieldset class="arm-grupo">
+<legend class="label arm-legend">¿Qué línea te interesa?</legend>
+<div class="arm-chips">
+<label class="arm-chip"><input type="radio" name="linea" value="Classic" data-texto="línea Classic"><span>Classic</span></label>
+<label class="arm-chip"><input type="radio" name="linea" value="Premium" data-texto="línea Premium"><span>Premium</span></label>
+<label class="arm-chip"><input type="radio" name="linea" value="Elite" data-texto="línea Elite"><span>Elite</span></label>
+<label class="arm-chip"><input type="radio" name="linea" value="No sé" data-frase="Todavía no sé qué línea."><span>Todavía no sé</span></label>
+</div>
+</fieldset>
+
+<fieldset class="arm-grupo">
+<legend class="label arm-legend">¿En qué zona?</legend>
+<div class="arm-chips">
+<label class="arm-chip"><input type="radio" name="zona" value="CABA" data-texto="en CABA"><span>CABA</span></label>
+<label class="arm-chip"><input type="radio" name="zona" value="Canning" data-texto="en Canning"><span>Canning</span></label>
+<label class="arm-chip"><input type="radio" name="zona" value="Ezeiza" data-texto="en Ezeiza"><span>Ezeiza</span></label>
+<label class="arm-chip"><input type="radio" name="zona" value="Otra zona" data-texto="en otra zona"><span>Otra zona</span></label>
+</div>
+</fieldset>
+
+<fieldset class="arm-grupo">
+<legend class="label arm-legend">¿Para cuándo?</legend>
+<div class="arm-chips">
+<label class="arm-chip"><input type="radio" name="cuando" value="Lo antes posible" data-frase="Para cuándo: lo antes posible."><span>Lo antes posible</span></label>
+<label class="arm-chip"><input type="radio" name="cuando" value="En unos meses" data-frase="Para cuándo: en unos meses."><span>En unos meses</span></label>
+<label class="arm-chip"><input type="radio" name="cuando" value="Averiguando" data-frase="Por ahora estoy averiguando."><span>Estoy averiguando</span></label>
+</div>
+</fieldset>
+
+<div class="arm-grupo arm-campo">
+<label class="label arm-legend" for="arm-nombre">Tu nombre (opcional)</label>
+<div class="arm-control">
+<input class="arm-input" id="arm-nombre" name="nombre" type="text" maxlength="40" autocomplete="given-name" autocapitalize="words" spellcheck="false" enterkeyhint="send">
+</div>
+</div>
+
+<div class="arm-envio">
+<a class="btn btn-pri arm-enviar" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener" aria-describedby="arm-vista">Enviar por WhatsApp</a>
+<p class="arm-vista" id="arm-vista"><span class="arm-vista-label">Tu mensaje</span><span class="arm-vista-texto" data-arm-texto>Hola, quiero consultar por un mueble a medida.</span></p>
+<p class="arm-nota">Se abre WhatsApp con el mensaje listo. No guardamos tus datos.</p>
+</div>
+</form>
+
+<div class="contacto-alt">
+<p class="contacto-alt-texto">O escribinos directo</p>
 <div class="btn-row btn-row--center">
-<a class="btn btn-pri" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+<a class="btn btn-pri contacto-directo" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
 <a class="btn" href="https://instagram.com/anderssolutions" target="_blank" rel="noopener">@anderssolutions</a>
+</div>
 </div>
 </div>
 </section>
@@ -440,8 +573,9 @@
 
 </div>
 <a class="wa-float" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.6a8.2 8.2 0 0 1-12.1 7.2L4 20l1.3-3.7A8.2 8.2 0 1 1 20 11.6z"/><path d="M9.2 8.6c.2-.4.5-.4.8-.4h.5c.2 0 .4.1.5.4l.6 1.5c.1.2 0 .5-.1.6l-.5.6c.6 1.1 1.4 1.9 2.5 2.5l.6-.5c.2-.2.4-.2.6-.1l1.5.6c.3.1.4.3.4.5v.5c0 .3-.1.6-.4.8-.6.4-1.4.5-2.2.2a8.6 8.6 0 0 1-4.7-4.7c-.3-.8-.2-1.6.2-2.3z"/></svg></a>
-<script src="js/site.js?v=202611112343" defer></script>
-<script src="js/galeria.js?v=202611112343" defer></script>
-<script src="js/interactivos.js?v=202611112343" defer></script>
+<script src="js/site.js?v=202611120016" defer></script>
+<script src="js/galeria.js?v=202611120016" defer></script>
+<script src="js/interactivos.js?v=202611120016" defer></script>
+<script src="js/contacto.js?v=202611120016" defer></script>
 </body>
 </html>
