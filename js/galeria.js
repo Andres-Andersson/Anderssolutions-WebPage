@@ -185,10 +185,19 @@
     }, 200);
   }
 
+  /* Al bloquear el scroll desaparece la barra y todo se correría a la derecha.
+     Donde se puede, el hueco de la barra queda reservado siempre
+     (scrollbar-gutter: stable en css/galeria.css) y no hay que compensar nada.
+     Si no, se compensa con padding en el body y en el header fijo. */
+  var reservaBarra = !!(window.CSS && CSS.supports && CSS.supports('scrollbar-gutter', 'stable'));
   function bloquear() {
     var ancho = window.innerWidth - document.documentElement.clientWidth;
-    bodyPrev = { pr: document.body.style.paddingRight };
-    if (ancho > 0) document.body.style.paddingRight = ancho + 'px';
+    var header = document.querySelector('.site-header');
+    bodyPrev = { pr: document.body.style.paddingRight, header: header, hr: header ? header.style.paddingRight : '' };
+    if (ancho > 0 && !reservaBarra) {
+      document.body.style.paddingRight = ancho + 'px';
+      if (header) header.style.paddingRight = ancho + 'px';
+    }
     document.documentElement.classList.add('lb-bloqueado');
     document.body.classList.add('lb-bloqueado');
     inertes = [];
@@ -199,7 +208,10 @@
   function desbloquear() {
     document.documentElement.classList.remove('lb-bloqueado');
     document.body.classList.remove('lb-bloqueado');
-    if (bodyPrev) document.body.style.paddingRight = bodyPrev.pr;
+    if (bodyPrev) {
+      document.body.style.paddingRight = bodyPrev.pr;
+      if (bodyPrev.header) bodyPrev.header.style.paddingRight = bodyPrev.hr;
+    }
     inertes.forEach(function (el) { el.inert = false; });
     inertes = [];
   }
@@ -272,25 +284,116 @@
 
     root.classList.add('gal-js');
 
-    /* --- Mosaico: cada foto ocupa tantas filas como su proporción pide --- */
-    var ultimoAncho = -1;
+    /* --- Mosaico en filas justificadas ---
+       Las fotos se reparten en filas (en el orden del HTML) y cada fila ocupa
+       todo el ancho con todas sus fotos a la misma altura, sin recortar.
+       El reparto se elige entre todas las combinaciones posibles para que las
+       alturas queden cerca de la ideal; así la última fila también cierra
+       prolija, haya las fotos que haya. Si quedan muy pocas fotos (por ejemplo
+       al filtrar) y llenar el ancho las haría enormes, la fila se limita a una
+       altura máxima y se centra. */
+    function proporcion(fig) {
+      var img = fig.querySelector('img');
+      var w = parseFloat(img.getAttribute('width')) || img.naturalWidth || 4;
+      var h = parseFloat(img.getAttribute('height')) || img.naturalHeight || 3;
+      return { w: w, h: h, a: w / h };
+    }
+    function medidas(W) {
+      // ideal, mínima y máxima altura de fila (en px) y máximo de fotos por fila
+      if (W >= 900) return { ideal: W * 0.3, min: W * 0.17, max: W * 0.5, porFila: 4 };
+      if (W >= 560) return { ideal: W * 0.4, min: W * 0.22, max: W * 0.72, porFila: 3 };
+      return { ideal: W * 0.62, min: W * 0.34, max: W * 1.15, porFila: 2 };
+    }
+    function repartir(as, W, gap, m) {
+      var n = as.length, costo = [0], corte = [0];
+      for (var j = 1; j <= n; j++) {
+        costo[j] = Infinity;
+        var suma = 0;
+        for (var i = j - 1; i >= 0 && j - i <= m.porFila; i--) {
+          suma += as[i];
+          var k = j - i;
+          var h = (W - (k - 1) * gap) / suma;
+          var c;
+          if (h > m.max) {
+            // No llena el ancho: se castiga según cuánto espacio queda vacío
+            var vacio = 1 - (m.max * suma + (k - 1) * gap) / W;
+            c = Math.pow((m.max - m.ideal) / m.ideal, 2) + 6 * vacio;
+          } else {
+            c = Math.pow((h - m.ideal) / m.ideal, 2);
+            if (h < m.min) c += 4 * Math.pow((m.min - h) / m.min, 2) + 1;
+          }
+          if (costo[i] + c < costo[j]) { costo[j] = costo[i] + c; corte[j] = i; }
+        }
+      }
+      var filas = [];
+      for (var f = n; f > 0; f = corte[f]) filas.unshift([corte[f], f]);
+      return filas;
+    }
+
+    var ultimoAncho = -1, ultimaFirma = '';
     function maquetar(forzar) {
       var visibles = items.filter(function (f) { return !f.hidden; });
-      if (!visibles.length) return;
-      var ancho = visibles[0].getBoundingClientRect().width;
-      if (!forzar && ancho === ultimoAncho) return;
-      ultimoAncho = ancho;
-      var cs = getComputedStyle(grid);
-      var unidad = parseFloat(cs.gridAutoRows) || 4;
-      var gap = parseFloat(getComputedStyle(visibles[0]).marginBottom) || 0;
+      var W = grid.clientWidth;
+      if (!W) return;
+      if (!forzar && W === ultimoAncho) return;
+      ultimoAncho = W;
+      var gap = parseFloat(getComputedStyle(root).getPropertyValue('--gal-gap')) || 16;
+      var m = medidas(W);
+      var datos = visibles.map(proporcion);
+      var filas = repartir(datos.map(function (d) { return d.a; }), W, gap, m);
+
+      var firma = filas.map(function (r) {
+        return visibles.slice(r[0], r[1]).map(function (f) { return items.indexOf(f); }).join(',');
+      }).join('|');
+      if (firma !== ultimaFirma) {
+        ultimaFirma = firma;
+        var activo = document.activeElement;
+        var enGrilla = activo && grid.contains(activo);
+        var frag = document.createDocumentFragment();
+        filas.forEach(function (r) {
+          var fila = document.createElement('div');
+          fila.className = 'gal-fila';
+          visibles.slice(r[0], r[1]).forEach(function (fig) { fila.appendChild(fig); });
+          frag.appendChild(fila);
+        });
+        items.forEach(function (fig) { if (fig.hidden) frag.appendChild(fig); });
+        grid.textContent = '';
+        grid.appendChild(frag);
+        if (enGrilla && activo.focus) activo.focus({ preventScroll: true });
+      }
+
+      filas.forEach(function (r) {
+        var suma = 0, k = r[1] - r[0], i;
+        for (i = r[0]; i < r[1]; i++) suma += datos[i].a;
+        var h = (W - (k - 1) * gap) / suma;
+        var llena = h <= m.max;
+        if (!llena) h = m.max;
+        for (i = r[0]; i < r[1]; i++) {
+          var fig = visibles[i], d = datos[i];
+          fig.style.aspectRatio = d.w + ' / ' + d.h;
+          // Fila llena: el ancho se reparte en proporción exacta (flex-grow), sin redondeos que la desborden
+          fig.style.flex = llena ? d.a + ' 1 0%' : '0 0 ' + (d.a * h).toFixed(2) + 'px';
+          var img = fig.querySelector('img');
+          if (img) img.sizes = Math.ceil(d.a * h) + 'px';
+        }
+      });
+      medirEpigrafes();
+    }
+
+    /* El epígrafe baja (en reposo) lo que ocupa la descripción: se mide por foto,
+       porque en fotos angostas la descripción puede ocupar dos líneas */
+    function medirEpigrafes() {
       items.forEach(function (fig) {
-        var img = fig.querySelector('img');
-        var w = parseFloat(img.getAttribute('width')) || img.naturalWidth || 4;
-        var h = parseFloat(img.getAttribute('height')) || img.naturalHeight || 3;
-        var filas = Math.max(1, Math.round((ancho * h / w + gap) / unidad));
-        fig.style.gridRowEnd = 'span ' + filas;
+        var desc = fig.querySelector('.gal-desc');
+        if (!desc) return;
+        var h = desc.offsetHeight;
+        var gapCap = parseFloat(getComputedStyle(desc.parentNode).rowGap) || 0;
+        if (h) fig.style.setProperty('--gal-cap-baja', (h + gapCap) + 'px');
+        else fig.style.removeProperty('--gal-cap-baja');
       });
     }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(medirEpigrafes);
+
     maquetar(true);
     if ('ResizeObserver' in window) {
       var raf = 0;

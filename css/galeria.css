@@ -4,7 +4,6 @@
 /* ---------- Galería ---------- */
 .gal-galeria{
   --gal-gap:16px;
-  --gal-unidad:4px;
   position:relative;
 }
 
@@ -18,17 +17,12 @@
   margin:0 0 var(--gal-gap);
 }
 
-/* Con JS: grilla tipo mosaico ordenada por filas (alturas calculadas en galeria.js) */
-.gal-galeria.gal-js .gal-grid{
-  columns:auto;
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  grid-auto-rows:var(--gal-unidad);
-  column-gap:var(--gal-gap);
-  row-gap:0;
-  align-items:stretch;
-}
-.gal-galeria.gal-js .gal-grid > .gal-item{margin:0 0 var(--gal-gap)}
+/* Con JS: filas justificadas (galeria.js reparte las fotos en .gal-fila;
+   cada fila ocupa todo el ancho y sus fotos tienen la misma altura, sin recortes) */
+.gal-galeria.gal-js .gal-grid{columns:auto;display:block}
+.gal-fila{display:flex;justify-content:center;gap:var(--gal-gap)}
+.gal-fila+.gal-fila{margin-top:var(--gal-gap)}
+.gal-galeria.gal-js .gal-item{margin:0;min-width:0}
 
 .gal-item{
   position:relative;
@@ -137,14 +131,11 @@
   overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
 }
 
-@media (max-width:1000px){
-  .gal-galeria.gal-js .gal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
 @media (max-width:760px){
   .gal-galeria{--gal-gap:10px}
   .gal-grid{columns:2 150px}
   .gal-filtros{gap:0 24px;margin-bottom:28px}
-  .gal-filtro{padding:12px 0 14px}
+  .gal-filtro{padding:14px 0}   /* 44px de alto: objetivo táctil cómodo */
   .gal-item figcaption{padding:40px 12px 12px;gap:4px}
   .gal-cat{font-size:10px;line-height:14px;letter-spacing:.2em}
   .gal-desc{font-size:16px;line-height:19px}
@@ -249,7 +240,10 @@
   .lb-next{right:12px}
 }
 
-/* Body bloqueado mientras el visor está abierto */
+/* Body bloqueado mientras el visor está abierto.
+   scrollbar-gutter reserva el lugar de la barra de scroll aunque se oculte,
+   así el header fijo y la página no se corren al abrir el visor. */
+html{scrollbar-gutter:stable}
 .lb-bloqueado{overflow:hidden}
 
 @media (prefers-reduced-motion:reduce){
