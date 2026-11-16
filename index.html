@@ -47,10 +47,10 @@
 <meta name="twitter:image:alt" content="Cristalero de perfil negro con vinoteca integrada, estantes de vidrio y luz cálida">
 <!-- Pone la clase .js antes del primer pintado (evita parpadeo). Su hash está en la CSP de arriba. -->
 <script>(function(d){d.classList.add('js');setTimeout(function(){if(!window.AS){d.classList.remove('js')}},4000)})(document.documentElement)</script>
-<link rel="stylesheet" href="css/site.css?v=202611121103">
-<link rel="stylesheet" href="css/galeria.css?v=202611121103">
-<link rel="stylesheet" href="css/interactivos.css?v=202611121103">
-<link rel="stylesheet" href="css/contacto.css?v=202611121103">
+<link rel="stylesheet" href="css/site.css?v=202611161510">
+<link rel="stylesheet" href="css/galeria.css?v=202611161510">
+<link rel="stylesheet" href="css/interactivos.css?v=202611161510">
+<link rel="stylesheet" href="css/contacto.css?v=202611161510">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HomeAndConstructionBusiness", "name": "AndersSolutions", "description": "Muebles de cocina, vestidores, placares y cristaleros a medida, de alta gama, con tecnología CNC y luz integrada.", "url": "https://anderssolutions.com.ar/", "logo": "https://anderssolutions.com.ar/img/favicon.png", "image": "https://anderssolutions.com.ar/img/og.jpg", "telephone": "+5491121872121", "address": {"@type": "PostalAddress", "addressLocality": "Villa Madero", "addressRegion": "Buenos Aires", "addressCountry": "AR"}, "areaServed": ["Ciudad Autónoma de Buenos Aires", "Canning", "Ezeiza", "Villa Madero"], "sameAs": ["https://instagram.com/anderssolutions"]}</script>
 </head>
 <body>
@@ -84,24 +84,27 @@
 
 <main id="contenido">
 
-<section id="inicio" class="hero">
+<section id="inicio" class="hero" data-video-marco>
 <div class="hero-media" aria-hidden="true">
 <div class="hero-bg"></div>
 <!--
   VIDEO DE PORTADA (opcional, hoy desactivado)
   Para activarlo:
    1. Subir los archivos a la carpeta video/ con estos nombres exactos:
-        video/portada.webm  (VP9, primero: más liviano)
-        video/portada.mp4   (H.264, respaldo para Safari/iPhone)
-      Recomendado: 8 a 15 segundos en loop, sin audio, 1280x720 o 1920x1080,
-      menos de 3 MB cada uno, plano lento y oscuro a la izquierda (ahí va el texto).
-   2. Borrar las dos líneas de apertura y cierre de este comentario, dejando solo la etiqueta video.
-  El video se carga desde js/site.js (atributo data-src): NO se descarga si el visitante
-  tiene activado "reducir movimiento" (prefers-reduced-motion) o "ahorro de datos" (Save-Data).
-  Mientras carga se ve la foto de fondo; el video aparece con un fundido cuando empieza a reproducirse.
-  Se mantiene detrás del degradado oscuro, así el texto sigue legible.
+        video/portada.mp4   (H.264: obligatorio, anda en todos los navegadores)
+        video/portada.webm  (VP9: opcional, más liviano. Si no lo subís, borrá abajo
+                             la línea que dice portada.webm)
+      Recomendado: 8 a 15 segundos en loop, sin audio, hasta 1920 px de ancho,
+      4 MB como máximo, plano lento y oscuro a la izquierda (ahí va el texto).
+      Cómo exportarlo: LEEME.md, sección "Videos".
+   2. Borrar la línea de apertura (la de "VIDEO DE PORTADA") y la de cierre de este
+      comentario, dejando solo la etiqueta video.
+  Lo maneja js/site.js: NO se descarga si el visitante tiene "reducir movimiento" o
+  "ahorro de datos" (queda la foto); se pausa al bajar y sigue al volver; aparece con
+  un fundido sobre la foto de fondo y suma un botón discreto para pausarlo.
+  No lleva poster: la foto de fondo (hero-bg) ya está detrás.
 
-<video class="hero-video" data-hero-video muted loop playsinline autoplay preload="metadata" poster="img/cristalero-vinoteca-calido-1600.webp">
+<video class="hero-video vid-video" data-video data-hero-video data-video-nombre="de portada" muted loop playsinline preload="none" width="1920" height="1080">
 <source data-src="video/portada.webm" type="video/webm">
 <source data-src="video/portada.mp4" type="video/mp4">
 </video>
@@ -242,6 +245,80 @@
 <p class="text-sm">Nuestro equipo lo coloca y lo deja funcionando.</p>
 </li>
 </ol>
+<!--
+  ======================================================================
+  VIDEOS DEL TALLER (franja debajo de los 4 pasos) — HOY DESACTIVADA
+  Hasta 4 clips cortos en loop, uno por paso. Con 0 clips no se ve nada;
+  con 1, 2, 3 o 4 se acomoda sola. "Fabricamos" es la protagonista: va
+  primera y más grande. En el celular es un carrusel de costado.
+
+  PARA ACTIVAR UN CLIP:
+  1. Subir a la carpeta video/ (crearla si no existe) el clip con su nombre exacto:
+       video/taller-1-escuchamos.mp4    video/taller-2-diseno.mp4
+       video/taller-3-fabricamos.mp4    video/taller-4-instalamos.mp4
+     y a img/ su poster (el primer cuadro del video): img/taller-N-poster.webp
+     (N = número del paso). Cómo exportarlos: LEEME.md, sección "Videos".
+     El poster se ve mientras el video carga, sin JavaScript y con "reducir movimiento".
+  2. Más abajo, en el bloque de ese clip, borrar su primera línea (la que dice
+     CLIP PASO N) y su última línea (la que cierra el comentario, debajo de figure).
+  3. El .webm es opcional (más liviano). Si NO lo subiste, borrar en ese bloque
+     la línea <source ... .webm ...>.
+  4. Cambiar el aria-label por una frase que describa lo que se ve en el video.
+  Nada se descarga mientras el bloque esté comentado. Con el bloque activo,
+  el video se baja recién cuando entra en pantalla (lo maneja js/site.js).
+  No usar style="" (la política de seguridad lo bloquea).
+  ======================================================================
+-->
+<div class="taller-franja" data-taller role="region" aria-label="Videos del taller">
+<!-- CLIP PASO 3 · FABRICAMOS (protagonista): borrar esta línea y la de cierre para activarlo
+<figure class="taller-clip taller-clip--pro">
+<div class="vid taller-media" data-video-marco>
+<img class="vid-poster" src="img/taller-3-poster.webp" width="1280" height="720" loading="lazy" decoding="async" alt="">
+<video class="vid-video" data-video data-video-nombre="de Fabricamos" muted loop playsinline preload="none" width="1280" height="720" aria-label="Centro de mecanizado CNC cortando una placa en el taller">
+<source data-src="video/taller-3-fabricamos.webm" type="video/webm">
+<source data-src="video/taller-3-fabricamos.mp4" type="video/mp4">
+</video>
+</div>
+<figcaption class="taller-pie"><span class="label">Paso 3</span> Fabricamos</figcaption>
+</figure>
+-->
+<!-- CLIP PASO 1 · ESCUCHAMOS: borrar esta línea y la de cierre para activarlo
+<figure class="taller-clip">
+<div class="vid taller-media" data-video-marco>
+<img class="vid-poster" src="img/taller-1-poster.webp" width="1280" height="720" loading="lazy" decoding="async" alt="">
+<video class="vid-video" data-video data-video-nombre="de Escuchamos" muted loop playsinline preload="none" width="1280" height="720" aria-label="Charla con el cliente sobre su espacio">
+<source data-src="video/taller-1-escuchamos.webm" type="video/webm">
+<source data-src="video/taller-1-escuchamos.mp4" type="video/mp4">
+</video>
+</div>
+<figcaption class="taller-pie"><span class="label">Paso 1</span> Escuchamos</figcaption>
+</figure>
+-->
+<!-- CLIP PASO 2 · DISEÑAMOS EN 3D: borrar esta línea y la de cierre para activarlo
+<figure class="taller-clip">
+<div class="vid taller-media" data-video-marco>
+<img class="vid-poster" src="img/taller-2-poster.webp" width="1280" height="720" loading="lazy" decoding="async" alt="">
+<video class="vid-video" data-video data-video-nombre="de Diseñamos en 3D" muted loop playsinline preload="none" width="1280" height="720" aria-label="Diseño 3D del mueble en la pantalla">
+<source data-src="video/taller-2-diseno.webm" type="video/webm">
+<source data-src="video/taller-2-diseno.mp4" type="video/mp4">
+</video>
+</div>
+<figcaption class="taller-pie"><span class="label">Paso 2</span> Diseñamos en 3D</figcaption>
+</figure>
+-->
+<!-- CLIP PASO 4 · INSTALAMOS: borrar esta línea y la de cierre para activarlo
+<figure class="taller-clip">
+<div class="vid taller-media" data-video-marco>
+<img class="vid-poster" src="img/taller-4-poster.webp" width="1280" height="720" loading="lazy" decoding="async" alt="">
+<video class="vid-video" data-video data-video-nombre="de Instalamos" muted loop playsinline preload="none" width="1280" height="720" aria-label="Armado e instalación del mueble">
+<source data-src="video/taller-4-instalamos.webm" type="video/webm">
+<source data-src="video/taller-4-instalamos.mp4" type="video/mp4">
+</video>
+</div>
+<figcaption class="taller-pie"><span class="label">Paso 4</span> Instalamos</figcaption>
+</figure>
+-->
+</div>
 </div>
 </section>
 
@@ -442,8 +519,17 @@
 </div>
 </div>
 <!-- PENDIENTE: esta foto (cocina-isla-varillada) también está en la galería de Proyectos. Reemplazar por una foto propia de Nosotros (taller, equipo o detalle de oficio). -->
-<figure class="about-media" data-reveal="fade" data-parallax>
+<figure class="about-media" data-reveal="fade" data-parallax data-video-marco>
 <img loading="lazy" src="img/cocina-isla-varillada-800.webp" srcset="img/cocina-isla-varillada-800.webp 800w, img/cocina-isla-varillada-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 50vw" width="1600" height="1200" decoding="async" alt="Cocina grafito con isla varillada">
+<!-- VIDEO DE NOSOTROS (opcional, hoy desactivado): va encima de la foto, que hace de poster y de respaldo
+  Para activarlo: subir video/taller-nosotros.mp4 (y, opcional, video/taller-nosotros.webm;
+  si no lo subís, borrá abajo la línea .webm), cambiar el aria-label por lo que se ve
+  y borrar la línea de apertura de este comentario y la de cierre.
+<video class="vid-video" data-video data-video-nombre="del taller" muted loop playsinline preload="none" width="1280" height="720" aria-label="El taller trabajando">
+<source data-src="video/taller-nosotros.webm" type="video/webm">
+<source data-src="video/taller-nosotros.mp4" type="video/mp4">
+</video>
+-->
 </figure>
 </div>
 </section>
@@ -620,9 +706,9 @@
 <aside>
 <a class="wa-float" href="https://wa.me/5491121872121?text=Hola%2C%20quiero%20consultar%20por%20un%20mueble%20a%20medida." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.6a8.2 8.2 0 0 1-12.1 7.2L4 20l1.3-3.7A8.2 8.2 0 1 1 20 11.6z"/><path d="M9.2 8.6c.2-.4.5-.4.8-.4h.5c.2 0 .4.1.5.4l.6 1.5c.1.2 0 .5-.1.6l-.5.6c.6 1.1 1.4 1.9 2.5 2.5l.6-.5c.2-.2.4-.2.6-.1l1.5.6c.3.1.4.3.4.5v.5c0 .3-.1.6-.4.8-.6.4-1.4.5-2.2.2a8.6 8.6 0 0 1-4.7-4.7c-.3-.8-.2-1.6.2-2.3z"/></svg></a>
 </aside>
-<script src="js/site.js?v=202611121103" defer></script>
-<script src="js/galeria.js?v=202611121103" defer></script>
-<script src="js/interactivos.js?v=202611121103" defer></script>
-<script src="js/contacto.js?v=202611121103" defer></script>
+<script src="js/site.js?v=202611161510" defer></script>
+<script src="js/galeria.js?v=202611161510" defer></script>
+<script src="js/interactivos.js?v=202611161510" defer></script>
+<script src="js/contacto.js?v=202611161510" defer></script>
 </body>
 </html>

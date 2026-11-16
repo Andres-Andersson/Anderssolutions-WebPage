@@ -196,6 +196,55 @@ a:hover{color:var(--bronce)}
 .js .step::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--bronce);transform:scaleX(var(--fill,0));transform-origin:left center;transition:transform .35s var(--ease)}
 .js .step:first-child{--fill:1}
 
+/* ---------- Videos (componente común: portada, taller y nosotros) ----------
+   Comportamiento en js/site.js (sección 5). Sin JS se ve el poster. */
+.vid{position:relative;overflow:hidden;background:var(--superficie)}
+.vid-video{display:block}
+/* Sin JavaScript el navegador mostraría los controles nativos del video sobre el poster: se oculta */
+html:not(.js) .vid-video{display:none}
+.vid .vid-poster,.vid .vid-video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+/* Fundido al arrancar: transparente sobre su poster hasta que reproduce */
+.vid-video.vid-espera{opacity:0;transition:opacity 1.2s var(--ease)}
+.vid-video.vid-espera.is-playing{opacity:1}
+/* Botón de pausa/reproducción: discreto, aparece cuando el video arranca */
+.vid-pausa{position:absolute;right:12px;bottom:12px;z-index:2;display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin:0;padding:0;box-sizing:border-box;border:1px solid rgba(243,239,232,.3);border-radius:2px;background:rgba(14,13,12,.55);color:var(--texto);cursor:pointer;opacity:.8;-webkit-tap-highlight-color:transparent;transition:opacity .5s var(--ease),border-color .5s var(--ease),color .5s var(--ease)}
+.vid-pausa[hidden]{display:none}
+.vid-pausa svg{display:block;width:12px;height:12px}
+.vid-pausa:hover,.vid-pausa:focus-visible{opacity:1;border-color:var(--bronce);color:var(--bronce-claro)}
+.vid-pausa--portada{right:32px;bottom:28px}
+
+/* ---------- Videos del taller (franja de "Cómo trabajamos") ----------
+   Hasta 4 clips. El de "Fabricamos" (taller-clip--pro) va primero en el HTML
+   y es el protagonista. Con 0 clips la franja no ocupa lugar.
+   Proporciones en escritorio:
+     1 clip            → una sola banda 2:1
+     protagonista + 1  → protagonista ancho (2/3) y el otro al lado, misma altura
+     protagonista + 2/3→ protagonista arriba a todo el ancho y el resto en fila abajo
+     sin protagonista  → todos en fila, del mismo tamaño
+   En celular: carrusel horizontal con scroll-snap (con 1 clip, a todo el ancho). */
+.taller-franja{display:flex;flex-wrap:wrap;gap:24px 16px}
+.taller-franja:has(>.taller-clip){margin-top:72px}
+.taller-clip{flex:1 1 0;min-width:0;margin:0;display:flex;flex-direction:column}
+.taller-media{aspect-ratio:4/3}
+.taller-pie{display:flex;align-items:baseline;gap:14px;padding-top:14px;font-family:var(--serif);font-size:20px;line-height:26px;font-weight:400;color:var(--texto-2)}
+.taller-pie .label{font-family:var(--sans);font-size:11px;line-height:14px}
+@media (min-width:761px){
+  /* 1 clip */
+  .taller-clip:only-child .taller-media{aspect-ratio:2/1;max-height:72vh}
+  /* protagonista + 1 */
+  .taller-clip--pro:first-child:nth-last-child(2){flex-grow:2}
+  .taller-clip--pro:first-child:nth-last-child(2) .taller-media{aspect-ratio:16/9}
+  .taller-clip--pro:first-child:nth-last-child(2)~.taller-clip .taller-media{aspect-ratio:auto;flex:1 1 auto;min-height:0}
+  /* protagonista + 2 o 3 */
+  .taller-clip--pro:first-child:nth-last-child(n+3){flex-basis:100%}
+  .taller-clip--pro:first-child:nth-last-child(n+3) .taller-media{aspect-ratio:21/9}
+  .taller-clip--pro:first-child:nth-last-child(3)~.taller-clip .taller-media{aspect-ratio:16/9}
+  .taller-clip--pro:first-child:nth-last-child(4)~.taller-clip .taller-media{aspect-ratio:3/2}
+  /* sin protagonista, 4 en fila */
+  .taller-clip:first-child:not(.taller-clip--pro):nth-last-child(4) .taller-media,
+  .taller-clip:first-child:not(.taller-clip--pro):nth-last-child(4)~.taller-clip .taller-media{aspect-ratio:1/1}
+}
+
 /* ---------- Nosotros ---------- */
 .section-about{padding:96px 0 120px;border-top:1px solid var(--linea)}
 /* Líneas (con filete abajo) queda justo arriba de Nosotros: evitar filete doble */
@@ -205,8 +254,10 @@ a:hover{color:var(--bronce)}
 .signature{display:inline-flex;flex-direction:column;align-items:flex-end}
 .signature-by{margin-top:4px;font-size:11px;line-height:14px;letter-spacing:.36em;text-transform:uppercase;color:var(--mudo)}
 .signature-by-small{text-transform:none;letter-spacing:.08em;margin-right:6px}
-.about-media{margin:0;height:560px;overflow:hidden;background:var(--superficie)}
+.about-media{position:relative;margin:0;height:560px;overflow:hidden;background:var(--superficie)}
 .about-media img{width:100%;height:100%;object-fit:cover;display:block}
+/* Video opcional del taller: va encima de la foto, que queda de respaldo */
+.about-media .vid-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* ---------- Contacto ---------- */
 .section-contact{padding:120px 0;background:var(--negro);text-align:center}
@@ -272,8 +323,8 @@ a:hover{color:var(--bronce)}
   .hero-bg{animation:as-kenburns 36s ease-in-out infinite alternate}
   .hero-scroll-dot{animation:as-scroll 2.8s var(--ease) 2s infinite}
 
-  /* Parallax leve de la foto de Nosotros (valor desde site.js) */
-  .js .about-media img{transform:translate3d(0,var(--parallax,0px),0) scale(1.1);will-change:transform}
+  /* Parallax leve de la foto (y del video, si lo hay) de Nosotros (valor desde site.js) */
+  .js .about-media img,.js .about-media .vid-video{transform:translate3d(0,var(--parallax,0px),0) scale(1.1);will-change:transform}
 
   /* Menú móvil: links entran escalonados */
   .js .mobile-menu-links a,.js .mobile-menu-cta{opacity:0;transform:translate3d(0,16px,0);transition:opacity .6s var(--ease),transform .6s var(--ease)}
@@ -309,6 +360,17 @@ a:hover{color:var(--bronce)}
 }
 
 /* =========================================================
+   Tablet (761–1199px): el texto del hero ocupa casi todo el ancho y
+   quedaba sobre la parte iluminada del cristalero. Degradado más parejo
+   y foto corrida a la derecha para que el texto mantenga el contraste.
+   (Celular y escritorio grande no cambian.)
+   ========================================================= */
+@media (min-width:761px) and (max-width:1199px){
+  .hero-bg{background-position:72% center;transform-origin:72% 45%}
+  .hero-shade{background:linear-gradient(90deg,rgba(14,13,12,.94) 0%,rgba(14,13,12,.9) 55%,rgba(14,13,12,.68) 80%,rgba(14,13,12,.42) 100%)}
+}
+
+/* =========================================================
    Móvil (≤760px)
    ========================================================= */
 @media (max-width:760px){
@@ -328,6 +390,17 @@ a:hover{color:var(--bronce)}
   .hero-shade{background:linear-gradient(180deg,rgba(14,13,12,.55),rgba(14,13,12,.88))}
 
   .wa-float{display:flex}
+
+  /* Videos del taller: carrusel horizontal (se ve asomar el siguiente) */
+  .taller-franja{flex-wrap:nowrap;gap:12px;margin-left:-20px;margin-right:-20px;padding:0 20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding:0 20px;scrollbar-width:none}
+  .taller-franja::-webkit-scrollbar{display:none}
+  .taller-franja:has(>.taller-clip){margin-top:48px}
+  .taller-franja .taller-clip{flex:0 0 84%;scroll-snap-align:start}
+  .taller-franja .taller-clip:only-child{flex-basis:100%}
+  .taller-franja .taller-clip:only-child .taller-media{aspect-ratio:16/10}
+  .taller-franja:focus-visible{outline:2px solid var(--bronce);outline-offset:4px}
+  .taller-pie{font-size:18px;line-height:24px;padding-top:12px}
+  .vid-pausa--portada{right:20px;bottom:20px}
 
   /* Header compacto para que entren firma + WhatsApp + menú */
   .header-bar{gap:12px}
