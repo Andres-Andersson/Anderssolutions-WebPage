@@ -138,6 +138,10 @@
 }
 .luz-pieza { position: absolute; inset: 0; margin: 0; }
 .luz-pieza[hidden] { display: none; }
+/* Foco del brillo (--luz-foco, x y en %) y encuadre (--luz-pos) de cada mueble.
+   Van acá y no en un style="" del HTML porque la CSP del sitio no permite
+   estilos inline. Para un mueble nuevo: sumarle una clase y copiar esta regla. */
+.luz-pieza--vestidor-negro { --luz-foco: 45% 50%; --luz-pos: 50% 55%; }
 
 .luz-img-on,
 .luz-capa-off,

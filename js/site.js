@@ -175,36 +175,142 @@
   }
 
   /* ---------------------------------------------------------
-     5. Hero: video opcional + WhatsApp flotante después del hero
+     5. Videos en loop (portada, taller, nosotros)
+        Cada <video data-video> trae sus <source data-src="...">.
+        - No se descarga NADA hasta que el video entra en pantalla
+          (preload="none" y las rutas recién se copian a src acá).
+        - Se pausa al salir de pantalla y sigue al volver.
+        - Con "reducir movimiento" o "ahorro de datos" no se carga:
+          queda el poster (o la foto de fondo, en la portada).
+        - Botón discreto de pausa/reproducción (WCAG 2.2.2), que
+          aparece cuando el video arranca.
+        - Fundido suave: el video arranca transparente sobre su poster
+          (una <img class="vid-poster"> con loading="lazy" debajo del video;
+          en Nosotros, la foto; en la portada, la foto de fondo).
      --------------------------------------------------------- */
-  var video = document.querySelector('video[data-hero-video]');
-  if (video) {
-    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    var saveData = !!(conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '')));
-    if (reducedMotion() || saveData) {
-      video.parentNode.removeChild(video);
-      video = null;
+  var ICONO_PAUSA = '<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 1.5h2v9H3zM7 1.5h2v9H7z" fill="currentColor"/></svg>';
+  var ICONO_PLAY = '<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 1.2 10.5 6 3 10.8z" fill="currentColor"/></svg>';
+
+  function ahorroDatos() {
+    var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    return !!(c && (c.saveData || /(^|-)2g$/.test(c.effectiveType || '')));
+  }
+
+  var videos = [].slice.call(document.querySelectorAll('video[data-video]'));
+  var sinVideo = reducedMotion() || ahorroDatos();
+
+  function prepararVideo(v) {
+    var esPortada = v.hasAttribute('data-hero-video');
+    if (sinVideo) {
+      // La portada tiene la foto de fondo detrás: el video sobra. El resto queda
+      // transparente (sin descargar nada) y se ve el poster que tiene debajo.
+      if (esPortada) v.parentNode.removeChild(v);
+      else v.classList.add('vid-espera');
+      return null;
+    }
+    var marco = v.closest('[data-video-marco]') || v.parentNode;
+    var nombre = v.getAttribute('data-video-nombre') || '';
+    var estado = { v: v, cargado: false, enPantalla: false, pausadoPorUsuario: false, boton: null };
+    v.muted = true;
+    v.classList.add('vid-espera');   // transparente hasta que arranca (se ve el poster de abajo)
+
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'vid-pausa' + (esPortada ? ' vid-pausa--portada' : '');
+    b.hidden = true;
+    marco.appendChild(b);
+    estado.boton = b;
+    function pintarBoton() {
+      var pausado = estado.pausadoPorUsuario;
+      b.innerHTML = pausado ? ICONO_PLAY : ICONO_PAUSA;
+      b.setAttribute('aria-label', (pausado ? 'Reproducir video' : 'Pausar video') + (nombre ? ' ' + nombre : ''));
+    }
+    pintarBoton();
+    b.addEventListener('click', function () {
+      estado.pausadoPorUsuario = !estado.pausadoPorUsuario;
+      if (estado.pausadoPorUsuario) v.pause(); else reproducir(estado);
+      pintarBoton();
+    });
+
+    v.addEventListener('playing', function () {
+      v.classList.add('is-playing');
+      b.hidden = false;
+    });
+    // Si no hay archivo o el formato no sirve, queda el poster y sin botón
+    var fuentes = v.querySelectorAll('source[data-src]');
+    if (fuentes.length) {
+      fuentes[fuentes.length - 1].addEventListener('error', function () { b.hidden = true; });
+    }
+    return estado;
+  }
+
+  function reproducir(e) {
+    if (!e.cargado) {
+      var fuentes = e.v.querySelectorAll('source[data-src]');
+      for (var i = 0; i < fuentes.length; i++) fuentes[i].src = fuentes[i].getAttribute('data-src');
+      e.cargado = true;
+      e.v.load();
+    }
+    if (e.pausadoPorUsuario || reducedMotion()) return;
+    var p = e.v.play();
+    if (p && p.catch) p.catch(function () { /* el navegador no dejó reproducir: queda el poster */ });
+  }
+
+  var estadosVideo = [];
+  for (var nv = 0; nv < videos.length; nv++) {
+    var ev = prepararVideo(videos[nv]);
+    if (ev) estadosVideo.push(ev);
+  }
+  if (estadosVideo.length) {
+    if (hasIO) {
+      var videoIO = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          for (var k = 0; k < estadosVideo.length; k++) {
+            var e = estadosVideo[k];
+            if (e.v !== entries[i].target) continue;
+            e.enPantalla = entries[i].isIntersecting;
+            if (e.enPantalla) reproducir(e);
+            else if (e.cargado) e.v.pause();
+          }
+        }
+      }, { threshold: 0 });
+      for (var o = 0; o < estadosVideo.length; o++) videoIO.observe(estadosVideo[o].v);
     } else {
-      var srcs = video.querySelectorAll('source[data-src]');
-      for (var v = 0; v < srcs.length; v++) srcs[v].src = srcs[v].getAttribute('data-src');
-      video.muted = true;
-      video.addEventListener('playing', function () { video.classList.add('is-playing'); }, { once: true });
-      video.load();
-      var pr = video.play();
-      if (pr && pr.catch) pr.catch(function () {});
+      for (var r = 0; r < estadosVideo.length; r++) reproducir(estadosVideo[r]);
+    }
+    // Si el visitante activa "reducir movimiento" con la página abierta, se frena todo
+    if (reduceMQ) {
+      var alReducir = function (e) {
+        if (!e.matches) return;
+        for (var i = 0; i < estadosVideo.length; i++) { estadosVideo[i].v.pause(); estadosVideo[i].boton.hidden = true; }
+      };
+      if (reduceMQ.addEventListener) reduceMQ.addEventListener('change', alReducir);
+      else if (reduceMQ.addListener) reduceMQ.addListener(alReducir);
     }
   }
 
+  /* Carrusel de videos del taller (celular): si se desplaza de costado,
+     tiene que poder enfocarse con el teclado para moverlo con las flechas */
+  var franja = document.querySelector('[data-taller]');
+  if (franja && franja.children.length) {
+    var marcarFranja = function () {
+      if (franja.scrollWidth > franja.clientWidth + 1) franja.setAttribute('tabindex', '0');
+      else franja.removeAttribute('tabindex');
+    };
+    marcarFranja();
+    if ('ResizeObserver' in window) new ResizeObserver(marcarFranja).observe(franja);
+    else window.addEventListener('resize', marcarFranja);
+  }
+
+  /* ---------------------------------------------------------
+     5b. WhatsApp flotante: aparece después del hero
+     --------------------------------------------------------- */
   var waFloat = document.querySelector('.wa-float');
   if (hero && hasIO) {
     new IntersectionObserver(function (entries) {
       var e = entries[0];
       var past = !e.isIntersecting && e.boundingClientRect.top < 0;
       if (waFloat) waFloat.classList.toggle('is-visible', past);
-      if (video) {
-        if (e.isIntersecting) { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
-        else video.pause();
-      }
     }, { threshold: 0 }).observe(hero);
   } else if (waFloat) {
     waFloat.classList.add('is-visible');
@@ -215,7 +321,6 @@
      --------------------------------------------------------- */
   var steps = document.querySelector('[data-steps]');
   var parallax = document.querySelector('[data-parallax]');
-  var parallaxImg = parallax ? parallax.querySelector('img') : null;
   var inView = { steps: false, parallax: false };
 
   function updateSteps() {
@@ -250,7 +355,8 @@
     var vh = window.innerHeight;
     var amp = mobileMQ && mobileMQ.matches ? 14 : 24;
     var k = clamp(((r.top + r.height / 2) - vh / 2) / (vh / 2 + r.height / 2), -1, 1);
-    parallaxImg.style.setProperty('--parallax', (-k * amp).toFixed(1) + 'px');
+    // En el marco (no en la foto): así lo heredan la foto y el video, si lo hay
+    parallax.style.setProperty('--parallax', (-k * amp).toFixed(1) + 'px');
   }
 
   var ticking = false;
@@ -259,7 +365,7 @@
     updateHeader();
     if (reducedMotion()) return;
     if (steps && inView.steps) updateSteps();
-    if (parallaxImg && inView.parallax) updateParallax();
+    if (parallax && inView.parallax) updateParallax();
   }
   function requestTick() {
     if (!ticking) { ticking = true; requestAnimationFrame(onFrame); }
